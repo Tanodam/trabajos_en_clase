@@ -10,3 +10,10 @@ int utn_getCaracter(    char* pResultado,
                         char minimo,
                         char maximo,
                         int reintentos);
+float utn_getNumeroFlotante(    float* pResultado,
+                                char mensaje[],
+                                char mensajeError[],
+                                float minimo,
+                                float maximo,
+                                int reintentos);
+
