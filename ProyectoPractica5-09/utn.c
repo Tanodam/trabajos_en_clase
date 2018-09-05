@@ -19,11 +19,11 @@ static int getChar(char* caracterIngresado)
     return scanf("%c", caracterIngresado);
 }
 
-//static int getFloat(float* numeroIngresado)
-//{
-//    __fpurge(stdin);
-//    return scanf("%f", numeroIngresado);
-//}
+static int getFloat(float* numeroIngresado)
+{
+    myFlush();
+    return scanf("%f", numeroIngresado);
+}
 //
 //static int getString(int* textoIngresado)
 //{
@@ -133,14 +133,39 @@ int utn_getCaracter(    char* pResultado,
 *\return Exito=0 y Error=1
 *
 */
-float utn_getNumeroFlotante(  float* pResultado,
+float utn_getNumeroFlotante(float* pResultado,
                             char mensaje[],
                             char mensajeError[],
                             float minimo,
                             float maximo,
                             int reintentos)
 {
-    return 0;
+    float numero;
+    int i;
+
+    for(i=0;i<reintentos;i++)
+    {
+        printf("%s", mensaje);
+        myFlush();
+        while(getFloat(&numero)!=1)
+        {
+            //__fpurge(stdin);
+            break;
+        }
+
+        if(numero>=minimo && numero<=maximo)
+        {
+            *pResultado=numero;
+            return 0;
+        }
+        else
+        {
+            printf("%s", mensajeError);
+
+        }
+    }
+    printf("Usted ha superado la cantidad de reintentos permitidos");
+    return -1;
 }
 
 /**
