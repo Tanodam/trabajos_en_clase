@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1536276009 source:/home/alumno/Documentos/array/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536276205 /home/alumno/Documentos/array/array.h
+
+1536276009 source:/home/alumno/Documentos/array/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+
+1536276009 /home/alumno/Documentos/array/utn.h
+
+1536281271 source:/home/alumno/Descargas/trabajos_en_clase/Codigo Compartido/array/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536280846 /home/alumno/Descargas/trabajos_en_clase/Codigo Compartido/array/array.h
+
+1536276611 source:/home/alumno/Descargas/trabajos_en_clase/Codigo Compartido/array/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+
+1536276611 /home/alumno/Descargas/trabajos_en_clase/Codigo Compartido/array/utn.h
+
+1536282417 source:/home/alumno/Descargas/trabajos_en_clase/Codigo Compartido/array/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"array.h"
+	<string.h>
+
