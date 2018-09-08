@@ -19,7 +19,7 @@ int main()
     }
 */
     //array_mostrar(edades,CANTIDAD_EMPLEADOS);
-    array_ordenar2(edades, CANTIDAD_EMPLEADOS, 0);
+    array_ordenar2(edades, CANTIDAD_EMPLEADOS, 1);
     array_mostrar(edades, CANTIDAD_EMPLEADOS);
 
     printf("--%d",i);

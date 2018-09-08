@@ -138,31 +138,30 @@ void array_swap(int* elementoA, int*elementoB)
 
 }
 
-int array_ordenar2(int* pArray, int limite, int orden)
-{
-    int retorno=-1;
-    int j;
-    int flagSwap;
-
-    if(pArray != NULL && limite > 0)
-    {
-        do
-        {
-            flagSwap=0;
-            for(j=0;j<limite-1;j++)
-            {
-                if((orden==1 && pArray[j]>pArray[j+1] || orden==1 && pArray[j]<pArray[j+1]))
-                {
-                    flagSwap=1;
-                    array_swap(&pArray[j], &pArray[j+1]);
-                }
-            }
-        }while(flagSwap);
-        retorno = 0;
-    }
-    return retorno;
-}
-
+//int array_ordenar2(int* pArray, int limite, int orden)
+//{
+//    int retorno=-1;
+//    int j;
+//    int flagSwap;
+//
+//    if(pArray != NULL && limite > 0)
+//    {
+//        do
+//        {
+//            flagSwap=0;
+//            for(j=0;j<limite-1;j++)
+//            {
+//                if((orden==0 && pArray[j]>pArray[j+1] || orden==1 && pArray[j]<pArray[j+1]))
+//                {
+//                    flagSwap=1;
+//                    array_swap(&pArray[j], &pArray[j+1]);
+//                }
+//            }
+//        }while(flagSwap);
+//        retorno = 0;
+//    }
+//    return retorno;
+//}
 
 
 

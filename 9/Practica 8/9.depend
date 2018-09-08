@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1536411347 source:/home/alumno/Escritorio/trabajos_en_clase/9/Practica 8/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536408356 /home/alumno/Escritorio/trabajos_en_clase/9/Practica 8/array.h
+
+1536412290 source:/home/alumno/Escritorio/trabajos_en_clase/9/Practica 8/main.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"utn.h"
+
+1536412243 /home/alumno/Escritorio/trabajos_en_clase/9/Practica 8/utn.h
+
+1536412858 source:/home/alumno/Escritorio/trabajos_en_clase/9/Practica 8/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<unistd.h>
+	"utn.h"
+	<stdio.h>
+	<string.h>
+
