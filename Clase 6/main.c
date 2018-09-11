@@ -11,7 +11,7 @@
     char miEdad[STRINGLEN];
     char miCelular[STRINGLEN];
     char miCorreo[STRINGLEN];
-    int edad, i,celular, validado = 0, contadorGuiones=0;
+    int edad, i,celular, validado = 0, contadorGuiones=0, contadorArroba=0, contadorPunto=0;
 
     //COMPARACION
     //strncpy(miString, "pepe", STRINGLEN);
@@ -91,26 +91,41 @@
     validado=0;
 //_______________________________________________________________________________
 
-    printf("\nIngrese su correo: ");
+    do
+    {
+
+    printf("Ingrese su correo: ");
     fflush(stdin);
     fgets(miCorreo, STRINGLEN, stdin);
 
     for (i=0; i<strlen(miCorreo)-1; i++)
     {
-        if ((miCorreo[i] != '.') && (miCorreo[i] != '@') && (miEdad[i] < '0') || (miEdad[i] > '9'))
+        if((miCorreo[i] != '@') && (miCorreo[i] != '.') && (miCorreo[i] != ' ') && (miCorreo[i] < 'a' || miCorreo[i] > 'z')
+            && (miCorreo[i] < '0' || miCorreo[i] > '9'))
         {
             validado = -1;
             break;
         }
+        if(miCorreo[i] == '@')
+        {
+            contadorArroba++;
+        }
+        if(miCorreo[i] == '.')
+        {
+            contadorPunto++;
+        }
     }
-    if (!validado)
+    if (!validado && contadorArroba==1)
         {
             printf("Mi correo es: %s", miCorreo);
+            validado=0;
         }
     else
         {
             printf("Correo invalido!");
+            return -1;
         }
+    }while(validado!=0);
 
     return 0;
 }
