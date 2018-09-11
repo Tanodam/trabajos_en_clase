@@ -104,7 +104,7 @@ void array_swap(int* elementoA, int*elementoB)
 void array_ordenarArray(int* pArray, int limiteArray, int orden)
 {
     int i;
-    int auxiliar;
+    //int auxiliar;
     int continuar = 1;
 
     while(continuar)

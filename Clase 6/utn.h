@@ -15,9 +15,12 @@ float suma (float numeroA, float numeroB);
 float resta (float numeroA, float numeroB);
 float cociente (float numeroA, float numeroB);
 float multiplicacion (float numeroA, float numeroB);
-int factorial(int numeroA);
+long factorial(int numeroA);
 float ingresaOperando(char identificadorOperando);
 void limpiarPantalla();
 void pausarPantalla();
 void myFlush();
-
+int comienzaCalculadora();
+static int getInt(int* numeroIngresado);
+int esNumerico(char str[]);
+int esSoloLetras(char str[]);
