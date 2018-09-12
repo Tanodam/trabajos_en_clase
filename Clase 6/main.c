@@ -11,34 +11,22 @@
     char miEdad[STRINGLEN];
     char miCelular[STRINGLEN];
     char miCorreo[STRINGLEN];
-    int edad, i, validado = 0, contadorGuiones=0, contadorArroba=0, contadorPunto=0;
+    char miApellido [STRINGLEN];
+    int i, validado = 0, contadorGuiones=0, contadorArroba=0, contadorPunto=0;
 
-    array_getNombre(miNombre, STRINGLEN);
-    printf("El nombre ingresado es %s", miNombre);
-
-//______________________________________________________________________________________________________________
-
-    printf("\nIngrese su edad:");
-    fflush(stdin);
-    fgets(miEdad, STRINGLEN, stdin);
-
-    for (i=0; i<strlen(miEdad)-1; i++) {
-        if (miEdad[i] < '0' || miEdad[i] > '9')
-        {
-            validado = -1;
-            break;
-        }
-    }
-
-    if (!validado && miEdad[i]<100)
+    if(array_getString(miNombre,STRINGLEN,"Ingrese su nombre: ","NOMBRE INVALIDO\n")==0)
     {
-        edad = atoi(miEdad);
-        printf("Mi edad es: %d", edad);
+        printf("El nombre ingresado es %s", miNombre);
     }
-    else
+    if(array_getString(miApellido,STRINGLEN,"Ingrese su apellido: ","APELLIDO INVALIDO\n")==0)
     {
-        printf("Edad invalida!");
+        printf("El apellido ingresado es %s", miApellido);
     }
+    if(array_getStringNumerico(miEdad,STRINGLEN,"Ingrese su edad: ","EDAD INVALIDA\n")==0)
+    {
+        printf("La edad ingresada es %s", miEdad);
+    }
+
 //_____________________________________________________________________________________________
 
     validado = 0;
