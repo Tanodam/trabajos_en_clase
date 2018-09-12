@@ -21,6 +21,5 @@ void limpiarPantalla();
 void pausarPantalla();
 void myFlush();
 int comienzaCalculadora();
-static int getInt(int* numeroIngresado);
 int esNumerico(char str[]);
 int esSoloLetras(char str[]);

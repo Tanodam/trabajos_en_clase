@@ -13,6 +13,8 @@ int array_minimoDesde(int* pArray, int limiteArray, int desde, int* pMinimo);
 void array_swap(int* elementoA, int*elementoB);
 void array_ordenarArray(int* pArray, int limiteArray, int orden);
 void array_imprimirIntArray(int* pArray, int limiteArray);
+int array_StringCharEsValido (char* pArray, int limiteArray);
+char array_getNombre(char* pArray, int limiteArray);
 
 
 #endif // ARRAY_H_INCLUDED

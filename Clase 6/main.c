@@ -11,36 +11,14 @@
     char miEdad[STRINGLEN];
     char miCelular[STRINGLEN];
     char miCorreo[STRINGLEN];
-    int edad, i,celular, validado = 0, contadorGuiones=0, contadorArroba=0, contadorPunto=0;
+    int edad, i, validado = 0, contadorGuiones=0, contadorArroba=0, contadorPunto=0;
 
-    //COMPARACION
-    //strncpy(miString, "pepe", STRINGLEN);
+    array_getNombre(miNombre, STRINGLEN);
+    printf("El nombre ingresado es %s", miNombre);
 
-    printf("Ingrese su nombre: ");
-    fgets(miNombre, STRINGLEN, stdin);
-
-    for (i=0; i<strlen(miNombre)-1; i++)
-    {
-        if ((miNombre[i] != ' ') && (miNombre[i] < 'a' || miNombre[i] > 'z') && (miNombre[i] < 'A' || miNombre[i] > 'Z'))
-        {
-            validado = -1;
-            break;
-        }
-    }
-
-    if (!validado)
-    {
-        printf("Mi nombre es: %s", miNombre);
-    }
-    else
-    {
-        printf("Nombre invalido!");
-    }
-
-    validado = 0;
 //______________________________________________________________________________________________________________
 
-    printf("Ingrese su edad: ");
+    printf("\nIngrese su edad:");
     fflush(stdin);
     fgets(miEdad, STRINGLEN, stdin);
 
@@ -62,6 +40,7 @@
         printf("Edad invalida!");
     }
 //_____________________________________________________________________________________________
+
     validado = 0;
     printf("\nIngrese su celular: ");
     fflush(stdin);
@@ -80,7 +59,7 @@
         }
     }
 
-    if (!validado && contadorGuiones==1)
+    if (!validado && (contadorGuiones>=1 || contadorGuiones<=2))
     {
         printf("Mi celular es: %s", miCelular);
     }
@@ -100,7 +79,7 @@
 
     for (i=0; i<strlen(miCorreo)-1; i++)
     {
-        if((miCorreo[i] != '@') && (miCorreo[i] != '.') && (miCorreo[i] != ' ') && (miCorreo[i] < 'a' || miCorreo[i] > 'z')
+        if((miCorreo[0] = '@' || miCorreo[i] != '@') && (miCorreo[i] != '.' || miCorreo[i] != ' ') && (miCorreo[i] < 'a' || miCorreo[i] > 'z')
             && (miCorreo[i] < '0' || miCorreo[i] > '9'))
         {
             validado = -1;

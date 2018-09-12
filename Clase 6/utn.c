@@ -19,10 +19,9 @@ void myFlush()
 */
 static int getInt(int* numeroIngresado)
 {
-    char buffer[400];
-    fgets(buffer, 400, stdin);
-    numeroIngresado = atoi(buffer);
-    return numeroIngresado;
+    int numero;
+    scanf("%d", &numero);
+    return numero;
 }
 /**
 *\brief Funcion que limpia la pantalla de la consola.
@@ -401,6 +400,6 @@ int esTelefono(char str[])
    if(contadorGuiones==1) // debe tener un guion
         return 0;
 
-    return ;
+    return 0;
 }
 

@@ -1,6 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "array.h"
+#include "string.h"
+#include "ctype.h"
+#include "utn.h"
+
+char array_getNombre(char* pArray, int limiteArray)
+{
+    int flagEsValido=-1;
+    int i;
+
+    while(flagEsValido!=0)
+    {
+        printf("Ingrese su nombre: ");
+        fgets(pArray, limiteArray, stdin);
+        myFlush();
+
+        for(i=0;i<limiteArray;i++)
+        {
+            pArray[i]=tolower(pArray[i]);
+        }
+        if(array_StringCharEsValido(pArray, limiteArray)==0)
+        {
+            flagEsValido=0;
+        }
+        else
+        {
+            printf("Nombre invalido");
+            flagEsValido=-1;
+        }
+    }
+
+    if(flagEsValido==0)
+        {
+            return *pArray;
+        }
+}
 
 int array_mostrar(int* pArray, int limiteArray)
 {
@@ -156,4 +191,26 @@ void array_ordenarArrayInsercion(int* pArray, int limiteArray)
 		}
 		pArray[j] = auxiliar;
 	}
+}
+int array_StringCharEsValido (char* pArray, int limiteArray)
+{
+    int validado;
+    int i;
+
+    for (i=0; i<strlen(pArray)-1; i++)
+        {
+            if((pArray[i] != ' ') && (pArray[i] < 'a' || pArray[i] > 'z'))
+            {
+                validado = -1;
+                break;
+            }
+        }
+        if (validado!=-1)
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
 }
