@@ -14,15 +14,15 @@
     char miApellido [STRINGLEN];
     int i, validado = 0, contadorGuiones=0, contadorArroba=0, contadorPunto=0;
 
-    if(array_getString(miNombre,STRINGLEN,"Ingrese su nombre: ","NOMBRE INVALIDO\n")==0)
-    {
-        printf("El nombre ingresado es %s", miNombre);
-    }
-    if(array_getString(miApellido,STRINGLEN,"Ingrese su apellido: ","APELLIDO INVALIDO\n")==0)
-    {
-        printf("El apellido ingresado es %s", miApellido);
-    }
-    if(array_getStringNumerico(miEdad,STRINGLEN,"Ingrese su edad: ","EDAD INVALIDA\n")==0)
+//    if(array_getString(miNombre,STRINGLEN,"Ingrese su nombre: ","NOMBRE INVALIDO\n")==0)
+//    {
+//        printf("El nombre ingresado es %s", miNombre);
+//    }
+//    if(array_getString(miApellido,STRINGLEN,"Ingrese su apellido: ","APELLIDO INVALIDO\n")==0)
+//    {
+//        printf("El apellido ingresado es %s", miApellido);
+//    }
+    if(array_getStringFloat(miEdad,STRINGLEN,"Ingrese su edad: ","EDAD INVALIDA\n" )==0)
     {
         printf("La edad ingresada es %s", miEdad);
     }

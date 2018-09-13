@@ -103,6 +103,45 @@ char array_getStringNumerico(char* pArray, int limiteArray, char mensaje[], char
     }
     return -2;
 }
+char array_getStringFloat(char* pArray, int limiteArray, char mensaje[], char mensajeError[])
+{
+    int flagEsValido=-1;
+    int contadorIntentos=0;
+    char string[limiteArray];
+
+
+    myFlush();
+    while(flagEsValido!=0)
+    {
+        printf("%s", mensaje);
+        fgets(string, limiteArray, stdin);
+        myFlush();
+
+        if(array_StringFloatEsValido(string,limiteArray)==0) ///Valido los caracteres, si se cumple 0 y si no -1
+        {
+            flagEsValido=0;
+        }
+        else
+        {
+            contadorIntentos++;
+            printf("%s", mensajeError);
+            myFlush();
+            flagEsValido=-1;
+            if(contadorIntentos==3)
+            {
+                printf("\nSe han superado los intenos maximos permitidos");
+                return -1;
+            }
+        }
+    }
+
+    if(flagEsValido==0)
+    {
+        strcpy(pArray,string); ///Copio en el puntero a pArray el valor de string
+        return 0;
+    }
+    return -2;
+}
 
 
 int array_mostrar(int* pArray, int limiteArray)
@@ -273,7 +312,7 @@ int array_StringCharEsValido (char* pArray, int limiteArray)
 
     for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
         {
-            if((pArray[i] != ' ') && (pArray[i] < 'a' || pArray[i] > 'z')) ///Verifica que no haya espacios ni caracteres fuera de rango
+            if((pArray[i] == ' ') && (pArray[i] < 'a' || pArray[i] > 'z')) ///Verifica que no haya espacios ni caracteres fuera de rango
             {
                 validado = -1;
                 break;
@@ -301,12 +340,37 @@ int array_StringIntEsValido (char* pArray, int limiteArray)
 
     for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
         {
-            if((pArray[i] != ' ') && (pArray[i] < '0' || pArray[i] > '9'))
+            if((pArray[i] == ' ') && (pArray[i] < '0' || pArray[i] > '9') && (pArray[0] != '-')  )
             {
                 validado = -1;
                 break;
             }
         }
+
+        if (validado!=-1)
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+}
+int array_StringFloatEsValido (char* pArray, int limiteArray)
+{
+    int validado;
+    int i;
+
+    for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
+        {
+
+            if((pArray[0] != '-')  && (pArray[0] == '.' || pArray[i] != '.') && (pArray[i] < '0' || pArray[i] > '9'))
+            {
+                validado = -1;
+                break;
+            }
+        }
+
         if (validado!=-1)
         {
             return 0;
