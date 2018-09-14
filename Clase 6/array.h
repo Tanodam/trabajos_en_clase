@@ -14,9 +14,9 @@ void array_swap(int* elementoA, int*elementoB);
 void array_ordenarArray(int* pArray, int limiteArray, int orden);
 void array_imprimirIntArray(int* pArray, int limiteArray);
 int array_StringCharEsValido (char* pArray, int limiteArray);
-char array_getString(char* pArray, int limiteArray, char mensaje[], char mensajeError[]);
+char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos);
 int array_StringIntEsValido (char* pArray, int limiteArray);
-char array_getStringNumerico(char* pArray, int limiteArray, char mensaje[], char mensajeError[]);
+char array_getStringInt(char* pArray, int limiteArray, char mensaje[], char mensajeError[]);
 char array_getStringFloat(char* pArray, int limiteArray, char mensaje[], char mensajeError[]);
 int array_StringFloatEsValido (char* pArray, int limiteArray);
 

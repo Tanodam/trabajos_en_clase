@@ -4,6 +4,30 @@
 #include "string.h"
 #include "ctype.h"
 #include "utn.h"
+#define BUFFER_STR 4097
+
+static int getString (char* pArray, int limiteaArray)
+{
+    int retorno = -1;
+    char buffer[BUFFER_STR];
+    char len;
+    if(pArray!=NULL && limiteaArray > 0)
+    {
+        myFlush();
+        fgets(buffer, limiteaArray,stdin);
+        len=strlen(buffer);
+        if(len != limiteaArray-1 && buffer[limiteaArray-2]=='\n')
+        {
+            buffer[len-1] = '\0';
+        }
+        retorno = 0;
+        strncpy(pArray,buffer,limiteaArray);
+    }
+    return retorno;
+
+}
+
+
 /**
 *\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringCharEsValido.
 *\param pArray Puntero a la direccion de memoria donde se va almacenar el string validado
@@ -12,49 +36,49 @@
 *\return Exito=0 y Error=1
 *
 */
-char array_getString(char* pArray, int limiteArray, char mensaje[], char mensajeError[])
+char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos)
 {
-    int flagEsValido=-1;
     int i;
+    int retorno=-1;
     int contadorIntentos=0;
-    char string[limiteArray];
+    char buffer[BUFFER_STR];
 
-    myFlush();
-    while(flagEsValido!=0)
+    if(pArray != NULL && limiteArray > 0)
     {
-        printf("%s", mensaje);
-        fgets(string, limiteArray, stdin);
-        myFlush();
-
-        for(i=0;i<limiteArray;i++)
+        do
         {
-            string[i]=tolower(string[i]); //Convierto todos los caracteres del array a minusculas para validarlos
-        }
-        if(array_StringCharEsValido(string, limiteArray)==0) ///Valido los caracteres, si se cumple 0 y si no -1
-        {
-            string[0]=toupper(string[0]); ///Convierto a mayusculas el primer caracter.
-            flagEsValido=0;
-        }
-        else
-        {
+            printf("%s", mensaje);
             contadorIntentos++;
-            printf("%s", mensajeError);
-            myFlush();
-            flagEsValido=-1;
-            if(contadorIntentos==3)
+            if(getString(buffer,limiteArray)==0)
             {
-                printf("\nSe han superado los intenos maximos permitidos");
-                return -1;
+                myFlush();
+
+                for(i=0;i<limiteArray;i++)
+                {
+                    buffer[i]=tolower(buffer[i]); //Convierto todos los caracteres del array a minusculas para validarlos
+                }
+                if(array_StringCharEsValido(buffer, limiteArray)==1) ///Valido los caracteres, si se cumple 1 y si no
+                {
+                    buffer[0]=toupper(buffer[0]); ///Convierto a mayusculas el primer caracter.
+                    strncpy(pArray,buffer,limiteArray); ///Copio en el puntero a pArray el valor de string
+                    retorno = 0;
+                    break;
+                }
+                else
+                {
+                    printf("%s", mensajeError);
+                    if(contadorIntentos==reintentos)
+                    {
+                        printf("\nSe han superado los intenos maximos permitidos");
+                        retorno = -1;
+                        break;
+                    }
+                }
             }
-        }
+        }while(contadorIntentos <= reintentos);
     }
 
-    if(flagEsValido==0)
-    {
-        strcpy(pArray,string); ///Copio en el puntero a pArray el valor de string
-        return 0;
-    }
-    return -2;
+    return retorno;
 }
 /**
 *\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringCharEsValido.
@@ -64,7 +88,7 @@ char array_getString(char* pArray, int limiteArray, char mensaje[], char mensaje
 *\return Exito=0 y Error=1
 *
 */
-char array_getStringNumerico(char* pArray, int limiteArray, char mensaje[], char mensajeError[])
+char array_getStringInt(char* pArray, int limiteArray, char mensaje[], char mensajeError[])
 {
     int flagEsValido=-1;
     int contadorIntentos=0;
@@ -303,16 +327,41 @@ void array_ordenarArrayInsercion(int* pArray, int limiteArray)
 *\brief [Funcion interna de GetStringChar] Valida que el usuario solo haya ingresado caracteres de la A a la Z
 *\param pArray Puntero a la direccion de memoria donde esta almacenada el string a validar
 *\param limiteArray tamaño del array
-*\return Exito=0 y Error=-1
+*\return Exito=1 y Error=-0
 */
 int array_StringCharEsValido (char* pArray, int limiteArray)
+{
+    int retorno=0;
+    int i;
+
+    if(pArray!= NULL && limiteArray > 0)
+    {
+        retorno = 1;
+        for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
+            {
+                if(pArray[i] < 'a' || pArray[i] > 'z') ///Verifica que no haya espacios ni caracteres fuera de rango
+                {
+                    retorno = 0;
+                    break;
+                }
+            }
+    }
+    return retorno;
+}
+/**
+*\brief [Funcion interna de GetStringInt] Valida que el usuario solo haya ingresado caracteres del 0 al 9
+*\param pArray Puntero a la direccion de memoria donde esta almacenada el string a validar
+*\param limiteArray tamaño del array
+*\return Exito=0 y Error=-1
+*/
+int array_StringIntEsValido (char* pArray, int limiteArray)
 {
     int validado;
     int i;
 
     for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
         {
-            if((pArray[i] == ' ') && (pArray[i] < 'a' || pArray[i] > 'z')) ///Verifica que no haya espacios ni caracteres fuera de rango
+            if((pArray[i] == '.' || pArray[i] == ' ') && (pArray[i] < '0' || pArray[i] > '9'))
             {
                 validado = -1;
                 break;
@@ -328,34 +377,11 @@ int array_StringCharEsValido (char* pArray, int limiteArray)
         }
 }
 /**
-*\brief [Funcion interna de GetStringChar] Valida que el usuario solo haya ingresado caracteres de la A a la Z
+*\brief [Funcion interna de GetStringFloat] Valida que el usuario solo haya ingresado caracteres del 0 al 9
 *\param pArray Puntero a la direccion de memoria donde esta almacenada el string a validar
 *\param limiteArray tamaño del array
 *\return Exito=0 y Error=-1
 */
-int array_StringIntEsValido (char* pArray, int limiteArray)
-{
-    int validado;
-    int i;
-
-    for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
-        {
-            if((pArray[i] == ' ') && (pArray[i] < '0' || pArray[i] > '9') && (pArray[0] != '-')  )
-            {
-                validado = -1;
-                break;
-            }
-        }
-
-        if (validado!=-1)
-        {
-            return 0;
-        }
-        else
-        {
-            return -1;
-        }
-}
 int array_StringFloatEsValido (char* pArray, int limiteArray)
 {
     int validado;

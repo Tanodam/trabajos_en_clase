@@ -14,15 +14,15 @@
     char miApellido [STRINGLEN];
     int i, validado = 0, contadorGuiones=0, contadorArroba=0, contadorPunto=0;
 
-//    if(array_getString(miNombre,STRINGLEN,"Ingrese su nombre: ","NOMBRE INVALIDO\n")==0)
-//    {
-//        printf("El nombre ingresado es %s", miNombre);
-//    }
-//    if(array_getString(miApellido,STRINGLEN,"Ingrese su apellido: ","APELLIDO INVALIDO\n")==0)
-//    {
-//        printf("El apellido ingresado es %s", miApellido);
-//    }
-    if(array_getStringFloat(miEdad,STRINGLEN,"Ingrese su edad: ","EDAD INVALIDA\n" )==0)
+    if(array_getNombre(miNombre,STRINGLEN,"Ingrese su nombre: ","NOMBRE INVALIDO\n", 3)==0)
+    {
+        printf("El nombre ingresado es %s", miNombre);
+    }
+    if(array_getNombre(miApellido,STRINGLEN,"Ingrese su apellido: ","APELLIDO INVALIDO\n",3)==0)
+    {
+        printf("El apellido ingresado es %s", miApellido);
+    }
+    if(array_getStringInt(miEdad,STRINGLEN,"Ingrese su edad: ","EDAD INVALIDA\n" )==0)
     {
         printf("La edad ingresada es %s", miEdad);
     }
@@ -67,7 +67,7 @@
 
     for (i=0; i<strlen(miCorreo)-1; i++)
     {
-        if((miCorreo[0] = '@' || miCorreo[i] != '@') && (miCorreo[i] != '.' || miCorreo[i] != ' ') && (miCorreo[i] < 'a' || miCorreo[i] > 'z')
+        if((miCorreo[0] == '@' || miCorreo[i] != '@') && (miCorreo[i] != '.' || miCorreo[i] != ' ') && (miCorreo[i] < 'a' || miCorreo[i] > 'z')
             && (miCorreo[i] < '0' || miCorreo[i] > '9'))
         {
             validado = -1;
