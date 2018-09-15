@@ -88,6 +88,50 @@ char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensaje
 *\return Exito=0 y Error=1
 *
 */
+char array_getMail(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos)
+{
+    int i;
+    int retorno=-1;
+    int contadorIntentos=0;
+    char buffer[BUFFER_STR];
+
+    if(pArray != NULL && limiteArray > 0)
+    {
+        do
+        {
+            printf("%s", mensaje);
+            contadorIntentos++;
+            if(getString(buffer,limiteArray)==0)
+            {
+                if(array_StringMailEsValido(buffer, limiteArray)==1)
+                {
+                    strncpy(pArray,buffer,limiteArray);
+                }
+                else
+                {
+                    printf("%s", mensajeError);
+                    if(contadorIntentos==reintentos)
+                    {
+                        printf("\nSe han superado los intenos maximos permitidos");
+                        retorno = -1;
+                        break;
+                    }
+                }
+
+            }
+        }while(contadorIntentos <= reintentos);
+    }
+
+    return retorno;
+}
+/**
+*\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringCharEsValido.
+*\param pArray Puntero a la direccion de memoria donde se va almacenar el string validado
+*\param mensaje[] es el mensaje que se le va a mostrar al usuario
+*\param mensajeError[] es el mensaje que se le va a mostrar al usuario si hay un error en la carga de datos
+*\return Exito=0 y Error=1
+*
+*/
 char array_getStringInt(char* pArray, int limiteArray, char mensaje[], char mensajeError[])
 {
     int flagEsValido=-1;
@@ -384,26 +428,94 @@ int array_StringIntEsValido (char* pArray, int limiteArray)
 */
 int array_StringFloatEsValido (char* pArray, int limiteArray)
 {
-    int validado;
+    int retorno=0;
     int i;
+    int contadorPuntos=0;
 
-    for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
-        {
-
-            if((pArray[0] != '-')  && (pArray[0] == '.' || pArray[i] != '.') && (pArray[i] < '0' || pArray[i] > '9'))
+    if(pArray!= NULL && limiteArray > 0)
+    {
+        retorno = 1;
+        for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
             {
-                validado = -1;
-                break;
-            }
-        }
+                if( pArray[0] == '.'&&
+                    (pArray[i] < '0' || pArray[i] > '9')) ///Verifica que no haya espacios ni caracteres fuera de rango
+                {
+                    retorno = 0;
+                }
+                else if (pArray[i]!= '.')
+                {
+                    retorno = 0;
+                }
+                if(pArray[i]=='.')
+                {
+                    contadorPuntos++;
+                }
+                if(contadorPuntos>1)
+                {
+                    retorno = 0;
 
-        if (validado!=-1)
-        {
-            return 0;
-        }
-        else
-        {
-            return -1;
-        }
+                }
+            }
+    }
+    return retorno;
+}
+/**
+*\brief [Funcion interna de GetStringChar] Valida que el usuario solo haya ingresado caracteres de la A a la Z
+*\param pArray Puntero a la direccion de memoria donde esta almacenada el string a validar
+*\param limiteArray tamaño del array
+*\return Exito=1 y Error=-0
+*/
+int array_StringMailEsValido (char* pArray, int limiteArray)
+{
+    int retorno = 0;
+    int i;
+    int contadorArroba = 0;
+    int indiceArroba=0;
+
+    if(pArray!= NULL && limiteArray > 0)
+    {
+        retorno = 1;
+        for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
+            {
+
+                    if (i==0 && pArray[i] == ' ')
+                    {
+                        retorno = 0;
+                        break;
+                    }
+                    if(i==0 && pArray[i]== '@' || pArray[i]=='.')
+                    {
+                        retorno = 0;
+                        break;
+                    }
+                    if(pArray[i]=='@')
+                    {
+                       contadorArroba++;
+                    }
+                    if(contadorArroba==1)
+                    {
+                        retorno = 1;
+                    }
+                    if(pArray[i] < 'a' || pArray[i] > 'z')
+                    {
+                        retorno = 0;
+                        break;
+                    }
+                    if(pArray[i]== '.')
+                    {
+                        retorno = 1;
+                        break;
+                    }
+
+                    else
+                    {
+                        retorno = 0;
+                    }
+
+
+
+            }
+    }
+    return retorno;
 }
 
