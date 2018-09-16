@@ -20,6 +20,7 @@ char array_getStringInt(char* pArray, int limiteArray, char mensaje[], char mens
 char array_getStringFloat(char* pArray, int limiteArray, char mensaje[], char mensajeError[]);
 int array_StringFloatEsValido (char* pArray, int limiteArray);
 char array_getMail(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos);
+int array_StringMailEsValido (char* pArray, int limiteArray);
 
 
 

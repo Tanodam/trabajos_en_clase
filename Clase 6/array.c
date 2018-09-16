@@ -90,7 +90,6 @@ char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensaje
 */
 char array_getMail(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos)
 {
-    int i;
     int retorno=-1;
     int contadorIntentos=0;
     char buffer[BUFFER_STR];
@@ -469,53 +468,64 @@ int array_StringMailEsValido (char* pArray, int limiteArray)
 {
     int retorno = 0;
     int i;
-    int contadorArroba = 0;
-    int indiceArroba=0;
+    int indexArroba = 0, indexPunto = 0;
+    int contadorPuntos;
 
     if(pArray!= NULL && limiteArray > 0)
     {
         retorno = 1;
-        for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
+        for (i=0; i<strlen(pArray)-1; i++)
+        {
+            if (pArray[i] == ' ') ///Valida que en ninguna parte del array haya espacios
             {
-
-                    if (i==0 && pArray[i] == ' ')
-                    {
-                        retorno = 0;
-                        break;
-                    }
-                    if(i==0 && pArray[i]== '@' || pArray[i]=='.')
-                    {
-                        retorno = 0;
-                        break;
-                    }
-                    if(pArray[i]=='@')
-                    {
-                       contadorArroba++;
-                    }
-                    if(contadorArroba==1)
-                    {
-                        retorno = 1;
-                    }
-                    if(pArray[i] < 'a' || pArray[i] > 'z')
-                    {
-                        retorno = 0;
-                        break;
-                    }
-                    if(pArray[i]== '.')
-                    {
-                        retorno = 1;
-                        break;
-                    }
-
-                    else
-                    {
-                        retorno = 0;
-                    }
-
-
-
+                retorno = 0;
+                break;
             }
-    }
+            if (i==0 && (pArray[i] < 'a' || pArray[i] == 'z')) ///Valida que el primer sea caracter alfabetico
+            {
+                retorno = 0;
+                break;
+            }
+            if (pArray[i] == '@') ///Valida que el usuario ingrese el arroba
+            {
+                if (indexArroba == 0)
+                {
+                    indexArroba = i;
+                }
+                else
+                {
+                    retorno = 0;
+                    break;
+                }
+            }
+            if (pArray[i] == '.' && indexArroba != 0)
+            {
+                indexPunto = i;
+                contadorPuntos++;
+            }
+            if (indexArroba != 0 && indexPunto != 0 && pArray[i] != '@')
+            {
+                if(contadorPuntos>=3)
+                {
+                    retorno = 0;
+                    break;
+                }
+                if (pArray[i] < 'a' || pArray[i] > 'z')
+                {
+                    retorno = 0;
+                    break;
+                }
+            }
+        }
+        if (indexArroba == 0 || indexPunto == 0)
+        {
+            retorno = 0;
+        }
+        else
+        {
+            retorno = 1;
+        }
+}
     return retorno;
 }
 
