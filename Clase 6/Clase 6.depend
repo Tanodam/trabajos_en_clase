@@ -53,7 +53,7 @@
 	<stdio.h>
 	<string.h>
 
-1536870786 source:/home/xubuntu/Escritorio/trabajos_en_clase/Clase 6/array.c
+1537215806 source:/home/xubuntu/Escritorio/trabajos_en_clase/Clase 6/array.c
 	<stdio.h>
 	<stdlib.h>
 	"array.h"
@@ -61,11 +61,11 @@
 	"ctype.h"
 	"utn.h"
 
-1536870111 /home/xubuntu/Escritorio/trabajos_en_clase/Clase 6/array.h
+1537204045 /home/xubuntu/Escritorio/trabajos_en_clase/Clase 6/array.h
 
 1536861771 /home/xubuntu/Escritorio/trabajos_en_clase/Clase 6/utn.h
 
-1536870709 source:/home/xubuntu/Escritorio/trabajos_en_clase/Clase 6/main.c
+1537204045 source:/home/xubuntu/Escritorio/trabajos_en_clase/Clase 6/main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

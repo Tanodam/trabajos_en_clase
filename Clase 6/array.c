@@ -469,7 +469,8 @@ int array_StringMailEsValido (char* pArray, int limiteArray)
     int retorno = 0;
     int i;
     int indexArroba = 0, indexPunto = 0;
-    int contadorPuntos;
+    int contadorPuntos = 0;
+    int contadorArroba = 0;
 
     if(pArray!= NULL && limiteArray > 0)
     {
@@ -486,37 +487,54 @@ int array_StringMailEsValido (char* pArray, int limiteArray)
                 retorno = 0;
                 break;
             }
-            if (pArray[i] == '@') ///Valida que el usuario ingrese el arroba
+            if (indexArroba == 0 && (pArray[i] < 'a' || pArray[i] == 'z') &&
+                (pArray[i] < '0' || pArray[i] == '9') && (pArray[i] != '.' && pArray[i] == '-' && pArray[i] == '_'))
             {
-                if (indexArroba == 0)
+                retorno = 0;
+                break;
+            }
+            if (pArray[i] == '@')
+            {
+
+                if (indexArroba == 0 && contadorArroba == 0)
                 {
-                    indexArroba = i;
+                    contadorArroba++;
+                    indexArroba = i; ///Guarda el indice en el momento que el usuario ingresa el arroba para despues validar el dominio
                 }
                 else
                 {
-                    retorno = 0;
+                    retorno = 0; ///Si el usuario ingresa mas de un arroba, devuelve 0
                     break;
                 }
             }
+///Guarda el indice en el momento que el usuario ingresa el primer punto despues del arroba y aumenta un contador de puntos.
             if (pArray[i] == '.' && indexArroba != 0)
             {
                 indexPunto = i;
-                contadorPuntos++;
             }
-            if (indexArroba != 0 && indexPunto != 0 && pArray[i] != '@')
+///Valida todo lo que esta entre el arroba y el primer punto
+            if (indexArroba != 0 && indexPunto == 0 && pArray[i] != '@')
             {
-                if(contadorPuntos>=3)
+                if ((pArray[i] < 'a' || pArray[i] > 'z') && (pArray[i] < '0' || pArray[i] > '9'))
                 {
                     retorno = 0;
                     break;
                 }
+            }
+///Valida todo lo que esta despues del primer punto
+            if (indexArroba != 0 && indexPunto != 0 && pArray[i] != '.')
+            {
                 if (pArray[i] < 'a' || pArray[i] > 'z')
                 {
                     retorno = 0;
                     break;
                 }
             }
-        }
+            if (i==strlen(pArray)-2 && (pArray[i] < 'a' || pArray[i] > 'z'))
+            {
+                retorno = 0;
+                break;
+            }
         if (indexArroba == 0 || indexPunto == 0)
         {
             retorno = 0;
@@ -525,7 +543,8 @@ int array_StringMailEsValido (char* pArray, int limiteArray)
         {
             retorno = 1;
         }
-}
+    }
+   }
     return retorno;
 }
 
