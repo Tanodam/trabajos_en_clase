@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1537301245 source:/home/xubuntu/Escritorio/Practica array y validaciones/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"validator.h"
+
+1537301272 /home/xubuntu/Escritorio/Practica array y validaciones/array.h
+
+1536861771 /home/xubuntu/Escritorio/Practica array y validaciones/utn.h
+
+1537301231 /home/xubuntu/Escritorio/Practica array y validaciones/validator.h
+
+1537301231 source:/home/xubuntu/Escritorio/Practica array y validaciones/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"array.h"
+
+1536861771 source:/home/xubuntu/Escritorio/Practica array y validaciones/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<unistd.h>
+	"utn.h"
+	<stdio.h>
+	<string.h>
+
+1537302162 source:/home/xubuntu/Escritorio/Practica array y validaciones/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+
