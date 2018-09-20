@@ -36,3 +36,40 @@
 	"ctype.h"
 	"utn.h"
 
+1537470871 source:/home/gabriel/trabajos_en_clase/Practica array y validaciones/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"validator.h"
+
+1537470871 /home/gabriel/trabajos_en_clase/Practica array y validaciones/array.h
+
+1537470871 /home/gabriel/trabajos_en_clase/Practica array y validaciones/utn.h
+
+1537470871 /home/gabriel/trabajos_en_clase/Practica array y validaciones/validator.h
+
+1537470871 source:/home/gabriel/trabajos_en_clase/Practica array y validaciones/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"array.h"
+
+1537470871 source:/home/gabriel/trabajos_en_clase/Practica array y validaciones/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<unistd.h>
+	"utn.h"
+	<stdio.h>
+	<string.h>
+
+1537470871 source:/home/gabriel/trabajos_en_clase/Practica array y validaciones/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+

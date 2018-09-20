@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1537318941 source:/home/alumno/Documentos/clase_09_init/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"producto.h"
+
+1537314897 /home/alumno/Documentos/clase_09_init/utn.h
+
+1537318991 /home/alumno/Documentos/clase_09_init/producto.h
+
+1537318235 source:/home/alumno/Documentos/clase_09_init/utn.c
+	<stdio_ext.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	"utn.h"
+
+1537318814 source:/home/alumno/Documentos/clase_09_init/producto.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"producto.h"
+
+1537415780 source:c:\users\chris_x4urr38\desktop\utn_c-utn_h-master\clase_09_init\producto.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"producto.h"
+
+1537305570 c:\users\chris_x4urr38\desktop\utn_c-utn_h-master\clase_09_init\utn.h
+
+1537415824 c:\users\chris_x4urr38\desktop\utn_c-utn_h-master\clase_09_init\producto.h
+
+1537412983 source:c:\users\chris_x4urr38\desktop\utn_c-utn_h-master\clase_09_init\utn.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	"utn.h"
+
+1537414381 source:c:\users\chris_x4urr38\desktop\utn_c-utn_h-master\clase_09_init\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"producto.h"
+
