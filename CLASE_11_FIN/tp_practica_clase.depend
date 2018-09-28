@@ -1,0 +1,209 @@
+# depslib dependency file v1.0
+1538006187 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/pantalla.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538009815 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/main.c
+	<stdio.h>
+	<stdlib.h>
+	"pantalla.h"
+	"utn.h"
+	"contrataciones.h"
+
+1538006205 /home/alumno/Escritorio/fede/struct/tp_practica_clase/pantalla.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1537479200 source:/home/alumno/Escritorio/fede/struct/producto/producto.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"producto.h"
+
+1537479200 /home/alumno/Escritorio/fede/struct/producto/producto.h
+
+1537740755 /home/alumno/Escritorio/fede/struct/tp_practica_clase/utn.h
+
+1537740755 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538010895 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/contrataciones.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"contrataciones.h"
+
+1538006611 /home/alumno/Escritorio/fede/struct/tp_practica_clase/contrataciones.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538018409 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/contrataciones.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"contrataciones.h"
+
+1537651774 /home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/utn.h
+
+1538017565 /home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/contrataciones.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538018117 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/main.c
+	<stdio.h>
+	<stdlib.h>
+	"pantalla.h"
+	"utn.h"
+	"contrataciones.h"
+
+1538014646 /home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/pantalla.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538014646 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/pantalla.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1537737559 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538084540 source:/home/profesor/Descargas/tp_practica_clase/main.c
+	<stdio.h>
+	<stdlib.h>
+	"pantalla.h"
+	"utn.h"
+	"contrataciones.h"
+
+1538084540 /home/profesor/Descargas/tp_practica_clase/pantalla.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538084540 /home/profesor/Descargas/tp_practica_clase/utn.h
+
+1538084540 /home/profesor/Descargas/tp_practica_clase/contrataciones.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538084540 source:/home/profesor/Descargas/tp_practica_clase/pantalla.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538084540 source:/home/profesor/Descargas/tp_practica_clase/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538084733 source:/home/profesor/Descargas/tp_practica_clase/contrataciones.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"contrataciones.h"
+
+1538094803 source:/home/profesor/Descargas/CLASE_11_INIT/contrataciones.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"contrataciones.h"
+
+1538084540 /home/profesor/Descargas/CLASE_11_INIT/utn.h
+
+1538084540 /home/profesor/Descargas/CLASE_11_INIT/contrataciones.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538084540 /home/profesor/Descargas/CLASE_11_INIT/pantalla.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538098462 source:/home/profesor/Descargas/CLASE_11_INIT/main.c
+	<stdio.h>
+	<stdlib.h>
+	"pantalla.h"
+	"utn.h"
+	"contrataciones.h"
+	"cliente.h"
+
+1538084540 source:/home/profesor/Descargas/CLASE_11_INIT/pantalla.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538084540 source:/home/profesor/Descargas/CLASE_11_INIT/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538098433 source:/home/profesor/Descargas/CLASE_11_INIT/cliente.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"cliente.h"
+
+1538097864 /home/profesor/Descargas/CLASE_11_INIT/cliente.h
+	"contrataciones.h"
+
