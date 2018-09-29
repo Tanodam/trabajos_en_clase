@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1538235486 source:/home/alumno/Escritorio/Practica Parcial/lib.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"lib.h"
+
+1538223672 /home/alumno/Escritorio/Practica Parcial/utn.h
+
+1538234845 /home/alumno/Escritorio/Practica Parcial/lib.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+
+1538235643 source:/home/alumno/Escritorio/Practica Parcial/llamada.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"llamada.h"
+	"lib.h"
+
+1538235486 /home/alumno/Escritorio/Practica Parcial/llamada.h
+	"lib.h"
+
+1538235643 source:/home/alumno/Escritorio/Practica Parcial/main.c
+	<stdio.h>
+	<stdlib.h>
+	"llamada.h"
+	"lib.h"
+	"utn.h"
+
+1538223672 source:/home/alumno/Escritorio/Practica Parcial/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
