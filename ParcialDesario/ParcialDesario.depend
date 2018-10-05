@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1538490758 source:/home/alumno/Documentos/ParcialDesario/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1538488452 /home/alumno/Documentos/ParcialDesario/utn.h
+
+1538691833 /home/alumno/Documentos/ParcialDesario/array.h
+
+1538692091 source:/home/alumno/Documentos/ParcialDesario/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+
+1538693402 source:/home/alumno/Documentos/ParcialDesario/array.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1538692091 /home/alumno/Documentos/ParcialDesario/validator.h
+
+1538700034 source:/home/alumno/Documentos/ParcialDesario/Clientes.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"Clientes.h"
+	"array.h"
+
+1538694911 /home/alumno/Documentos/ParcialDesario/Clientes.h
+
+1538703267 source:/home/alumno/Documentos/ParcialDesario/ventaAfiches.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"Clientes.h"
+	"ventaAfiches.h"
+	"array.h"
+
+1538703307 source:/home/alumno/Documentos/ParcialDesario/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Clientes.h"
+	"ventaAfiches.h"
+	"array.h"
+
+1538701294 /home/alumno/Documentos/ParcialDesario/ventaAfiches.h
+
