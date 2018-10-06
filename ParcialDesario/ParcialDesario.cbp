@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="array.h" />
+		<Unit filename="informar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="informar.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

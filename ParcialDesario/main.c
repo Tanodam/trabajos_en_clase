@@ -5,6 +5,7 @@
 #include "Clientes.h"
 #include "ventaAfiches.h"
 #include "array.h"
+#include "informar.h"
 
 int main()
 {
@@ -16,21 +17,21 @@ int main()
     int contadorClientes=0;
     int flagDatosCargados=0;
     Cliente* clienteSeleccionado;
-
-    Ventas *ventaSeleccionada;
+    Ventas* ventaSeleccionada;
 
     Cliente clientes[CANT_CLIENTES];
     Ventas ventas[CANT_VENTAS];
 
     cliente_inicializarArray(clientes,CANT_CLIENTES);
+    ventas_inicializarArray(ventas,CANT_VENTAS);
 
     cliente_ingresoForzado(clientes,CANT_CLIENTES,"Damian","Desario","20-39387106-8");
     cliente_ingresoForzado(clientes,CANT_CLIENTES,"Pedro","Gomez","24-33655833-4");
     cliente_ingresoForzado(clientes,CANT_CLIENTES,"Gino","Nazzi","22-14071756-9");
 
-    ventas_inicializarArray(ventas,CANT_VENTAS);
 
     ventas_ingresoForzado(ventas,CANT_VENTAS,3,"Nueva Publicidad","ZONASUR",2);
+    ventas_ingresoForzado(ventas,CANT_VENTAS,3,"Vieja Publicidad","ZONAESTE",2);
     ventas_ingresoForzado(ventas,CANT_VENTAS,6,"Burger Kong", "Zona Oeste",1);
     ventas_ingresoForzado(ventas,CANT_VENTAS,14,"Nuevas Abidas HiperSport3", "CABA",0);
 
@@ -48,9 +49,6 @@ int main()
                 {
                     cliente_altaCliente(clientes,indiceVacio,CANT_CLIENTES);
                     flagDatosCargados=1;
-                    pausarPantalla();
-                    limpiarPantalla();
-                    printf("ALTA EXITOSA! Se genero el cliente con el ID %d", indiceVacio);
                 }
                 else
                 {
@@ -88,20 +86,20 @@ int main()
             case 3:
                 if(flagDatosCargados!=0)
                 {
-                    array_getStringInt(&auxId,4,"Ingrese el ID que hay que borrar ", "ERROR! Ingrese un numero valido\n", 3);
-                    if(cliente_busquedaPorID(clientes,CANT_CLIENTES,auxId)!= NULL)
+                    array_getStringInt(&auxId,4,"Ingrese el ID que hay que borrar y sus ventas ", "ERROR! Ingrese un numero valido\n", 3);
+                    if(cliente_busquedaPorID(clientes,CANT_CLIENTES,auxId)!= NULL && ventas_busquedaPorIDClientes(ventas,CANT_VENTAS,auxId))
                     {
                     clienteSeleccionado = cliente_busquedaPorID(clientes,CANT_CLIENTES,auxId);
-                    pausarPantalla();
-                    limpiarPantalla();
-                    cliente_borrarPorID(clienteSeleccionado,CANT_CLIENTES);
+                    ventaSeleccionada = ventas_busquedaPorIDClientes(ventas,CANT_VENTAS,auxId);
+                    cliente_borrarPorID(clienteSeleccionado,1);
+                    ventas_borrarPorID(ventaSeleccionada,1);
                     contadorClientes--;
                     printf("\nEliminacion realizada\n");
                     pausarPantalla();
                     if(!contadorClientes)
                         {   limpiarPantalla();
                             flagDatosCargados=0;
-                            printf("Ya no hay usuarios en el sistema\n");
+                            printf("Ya no hay clientes en el sistema\n");
                             pausarPantalla();
                         }
                     }
@@ -117,30 +115,37 @@ int main()
                     pausarPantalla();
                 }
                 break;
-
-                break;
-
             case 4:
                 if(flagDatosCargados!=0)
                 {
-                array_getStringInt(&auxId,4,"Ingrese el ID del cliente para vender ", "ERROR! Ingrese un numero valido\n", 3);
-                if(cliente_busquedaPorID(clientes,CANT_CLIENTES,auxId)!= NULL && ventas_venderAfiches(ventas,clientes,CANT_VENTAS,CANT_CLIENTES,auxId))
+                    array_getStringInt(&auxId,4,"Ingrese el ID del cliente para vender ", "ERROR! Ingrese un numero valido\n", 3);
+                    if(cliente_busquedaPorID(clientes,CANT_CLIENTES,auxId)!= NULL &&
+                        !ventas_venderAfiches(ventas,CANT_VENTAS,auxId))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        printf("No se encontro el ID\n");
+                        pausarPantalla();
+                        break;
+                    }
+                }
+                else
                 {
-                    printf("No se puedo realizar la venta");
+                    printf("NO HAY DATOS CARGADOS\n");
                     pausarPantalla();
-                    limpiarPantalla();
+                    break;
                 }
-                }
-                break;
             case 5:
                 if(flagDatosCargados!=0)
                 {
-                    ventas_imprimirListaVentas(ventas,CANT_VENTAS);
+                    ventas_imprimirListaVentas(ventas,CANT_VENTAS,clientes,CANT_CLIENTES);
                     array_getStringInt(&auxId,4,"Ingrese el ID de la ventaque hay que editar ", "ERROR! Ingrese un numero valido\n", 3);
                     if(ventas_busquedaPorID(ventas,CANT_VENTAS,auxId)!= NULL)
                     {
                     ventaSeleccionada = ventas_busquedaPorID(ventas,CANT_VENTAS,auxId);
-                    ventas_editarAfiches(ventas,CANT_VENTAS);
+                    ventas_editarAfiches(ventaSeleccionada,1);
                     pausarPantalla();
                     limpiarPantalla();
                     }
@@ -154,13 +159,12 @@ int main()
             case 6:
             if(flagDatosCargados!=0)
                 {
-                    ventas_imprimirListaVentas(ventas,CANT_VENTAS);
+                    ventas_imprimirListaVentas(ventas,CANT_VENTAS,clientes,CANT_CLIENTES);
                     array_getStringInt(&auxId,4,"Ingrese el ID de la ventaque hay que cerrar ", "ERROR! Ingrese un numero valido\n", 3);
                     if(ventas_busquedaPorID(ventas,CANT_VENTAS,auxId)!= NULL)
                     {
                     ventaSeleccionada = ventas_busquedaPorID(ventas,CANT_VENTAS,auxId);
-                    ventas_cerrarVentas(ventas,CANT_VENTAS,clientes,CANT_CLIENTES);
-                    pausarPantalla();
+                    ventas_cerrarVentas(ventaSeleccionada,CANT_VENTAS,clientes,CANT_CLIENTES);
                     limpiarPantalla();
                     }
                     else
@@ -172,7 +176,7 @@ int main()
 
                 break;
             case 7:
-                cliente_imprimirListaClientes(clientes,CANT_CLIENTES);
+                informar_listaClientesConVentasACobrar(clientes,ventas,CANT_CLIENTES,CANT_VENTAS);
                 limpiarPantalla();
                 break;
          }

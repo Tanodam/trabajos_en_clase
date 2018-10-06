@@ -59,3 +59,75 @@
 
 1538701294 /home/alumno/Documentos/ParcialDesario/ventaAfiches.h
 
+1538832861 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/array.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1538827454 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/utn.h
+
+1538827454 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/array.h
+
+1538827454 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/validator.h
+
+1538832399 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/Clientes.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"Clientes.h"
+	"array.h"
+
+1538830765 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/Clientes.h
+
+1538835314 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Clientes.h"
+	"ventaAfiches.h"
+	"array.h"
+	"informar.h"
+
+1538832701 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/ventaAfiches.h
+
+1538827454 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1538827454 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+
+1538835314 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/ventaAfiches.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"Clientes.h"
+	"ventaAfiches.h"
+	"array.h"
+
+1538835259 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/informar.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"Clientes.h"
+	"ventaAfiches.h"
+	"array.h"
+
+1538833950 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/informar.h
+

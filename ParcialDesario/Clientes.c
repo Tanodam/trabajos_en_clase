@@ -80,6 +80,9 @@ int cliente_altaCliente(Cliente* array,int indice, int limite)
             array[indice].id = cliente_obtenerID();
             retorno = 0;
         }
+        printf("\nALTA EXITOSA! Se genero el cliente con el ID %d\n", indice);
+        pausarPantalla();
+        limpiarPantalla();
         return retorno;
 }
 /**
@@ -140,6 +143,8 @@ Cliente* cliente_busquedaPorID(Cliente* array, int limite, int ID)
 */
 void cliente_borrarPorID(Cliente* array,int limite)
 {
+
+    limpiarPantalla();
     printf("Se va a borrar el siguiente cliente\nNombre: %s\nApellido: %s\nCuit: %s\nID: %d\n\n",
     array->nombre, array->apellido, array->cuit, array->id);
     pausarPantalla();

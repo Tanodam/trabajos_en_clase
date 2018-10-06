@@ -61,7 +61,7 @@ int ventas_buscarIndiceVacio(Ventas* array,int limite,int*indice)
 *\param limite es la cantidad de ventass
 *\return Exito=0 Error=1
 */
-int ventas_venderAfiches(Ventas* arrayVentas, Cliente* arrayClientes, int limiteVentas, int limiteClientes, int idCliente)
+int ventas_venderAfiches(Ventas* array, int limite, int idCliente)
 {
     int retorno=-1;
     int auxIndice;
@@ -69,30 +69,33 @@ int ventas_venderAfiches(Ventas* arrayVentas, Cliente* arrayClientes, int limite
     char zona[21];
     int cantidad;
 
-    ventas_buscarIndiceVacio(arrayVentas,limiteVentas,&auxIndice);
-    printf("%d",auxIndice);
-    if( arrayVentas != NULL && arrayClientes != NULL && arrayVentas[auxIndice].isEmpty &&
+    ventas_buscarIndiceVacio(array,limite,&auxIndice);
+    if( array != NULL && array[auxIndice].isEmpty &&
         !array_getNombre(nombreDelArchivo,51,"\nIngrese el nombre del archivo: ", "ERROR!",3) &&
         !array_getNombre(zona,21,"\nIngrese la zona de la publicacion: ", "ERROR!",3) &&
-        !array_getStringInt(&cantidad,100,"\nIngrese la cantidad de afiches","ERROR!",3))
+        !array_getStringInt(&cantidad,100,"\nIngrese la cantidad de afiches: ","ERROR!",3))
 
         {
             retorno = 0;
-            strncpy(arrayVentas[auxIndice].nombreDelArchivo,nombreDelArchivo,51);
-            strncpy(arrayVentas[auxIndice].zona,zona,21);
-            arrayVentas[auxIndice].cantidad=cantidad;
-            arrayVentas[auxIndice].idCliente=idCliente;
-            arrayVentas[auxIndice].id=ventas_obtenerID();
-            arrayVentas[auxIndice].isEmpty=0;
-            strncpy(arrayVentas[auxIndice].estadoVenta,"A COBRAR",21);
-            printf("Venta Exitosa! ID de venta %d", arrayVentas[auxIndice].id);
+            strncpy(array[auxIndice].nombreDelArchivo,nombreDelArchivo,51);
+            strncpy(array[auxIndice].zona,zona,21);
+            array[auxIndice].cantidad=cantidad;
+            array[auxIndice].idCliente=idCliente;
+            array[auxIndice].id=ventas_obtenerID();
+            array[auxIndice].isEmpty=0;
+            strncpy(array[auxIndice].estadoVenta,"A COBRAR",11);
+            printf("Venta Exitosa!\t ID de venta %d\n", array[auxIndice].id);
 
             pausarPantalla();
 
         }
-
-
-        return retorno;
+        else
+        {
+            printf("No se pudo realizar la venta\n");
+            pausarPantalla();
+            limpiarPantalla();
+        }
+    return retorno;
 }
 /**
 *\brief Funcion que busca un ventas por su ID.
@@ -115,7 +118,41 @@ Ventas* ventas_busquedaPorID(Ventas* array, int limite, int ID)
     }
     return retorno;
 }
+/**
+*\brief Funcion que busca un ventas por su ID.
+*\param Empleado* array es el puntero que recibe a la estructua Empleados para trabajar con ella y sus campos
+*\param limite es la cantidad de ventass
+*\param ID es el identificador de usuario que hay que encontrar
+*\return Retorna el indice donde esta alojado la informacion del ventas - NULL si no encuentra nada
+*/
+Ventas* ventas_busquedaPorIDClientes(Ventas* array, int limite, int IDCliente)
+{
+    int i;
+    Ventas* retorno=NULL;
+    for (i=0;i<limite;i++){
+        if(!array[i].isEmpty && array[i].idCliente==IDCliente)
+        {
+            retorno = array+i;
+            break;
+        }
 
+    }
+    return retorno;
+}
+/**
+*\brief Funcion que borra un cliente cambiando el estado del valor de IsEmpty
+*\param Empleado* array
+ es el puntero que recibe a la estructua Empleados para trabajar con ella y sus campos
+*\param limite es la cantidad de clientes
+*\return void
+*/
+void ventas_borrarPorID(Ventas* array,int limite)
+{
+    if(array != NULL && limite>0)
+    {
+        array->isEmpty=1;
+    }
+}
 /**
 *\brief Funcion que hardcodea todos los campos de la estructura con informacion falsa para testeo
 *\param Empleado* array es el puntero que recibe a la estructua Empleados para trabajar con ella y sus campos
@@ -137,7 +174,7 @@ int ventas_ingresoForzado(Ventas* array,int limite,int cantidadAfiches,char* nom
     array[auxiliar].cantidad=cantidadAfiches;
     array[auxiliar].idCliente=idCliente;
     array[auxiliar].id=ventas_obtenerID();
-    strncpy(array[auxiliar].estadoVenta,"A COBRAR",21);
+    strncpy(array[auxiliar].estadoVenta,"A COBRAR",11);
 
     return 0;
 }
@@ -148,21 +185,24 @@ int ventas_ingresoForzado(Ventas* array,int limite,int cantidadAfiches,char* nom
 *\param limite es la cantidad de clientes
 *\return Exito=0 Error=1
 */
-int ventas_imprimirListaVentas(Ventas* array,int limite)
+int ventas_imprimirListaVentas(Ventas* arrayVentas,int limiteVentas, Cliente* arrayClientes, int limiteClientes)
 {
-    int i;
 
-    for(i=0;i<limite;i++)
+    int i;
+    Cliente* clienteSeleccionado;
+
+    for(i=0;i<limiteVentas;i++)
     {
-        if(array[i].isEmpty==0)
+        if(arrayVentas[i].isEmpty==0 && clienteSeleccionado!=NULL)
         {
-            printf("----%d", array[i].isEmpty);
-            printf("\nID de venta: %d",array[i].id);
-            printf("\nNombre del archivo: %s",array[i].nombreDelArchivo);
-            printf("\nCantidad de afiches: %d",array[i].cantidad);
-            printf("\nZona: %s",array[i].zona);
-            printf("\nID Cliente %d",array[i].idCliente);
-            printf("\nEstado %s\n\n",array[i].estadoVenta);
+            clienteSeleccionado = cliente_busquedaPorID(arrayClientes,limiteClientes,arrayVentas[i].idCliente);
+            printf("\nID de venta: %d",arrayVentas[i].id);
+            printf("\nNombre del archivo: %s",arrayVentas[i].nombreDelArchivo);
+            printf("\nCantidad de afiches: %d",arrayVentas[i].cantidad);
+            printf("\nZona: %s",arrayVentas[i].zona);
+            printf("\nNombre: %s, %s",clienteSeleccionado->nombre, clienteSeleccionado->apellido);
+            printf("\nID Cliente %d",arrayVentas[i].idCliente);
+            printf("\nEstado %s\n\n",arrayVentas[i].estadoVenta);
         }
     }
         pausarPantalla();
@@ -180,7 +220,7 @@ int ventas_editarAfiches(Ventas* array, int limite)
     pausarPantalla();
     if( array != NULL && !array->isEmpty &&
         !array_getNombre(zona,21,"\nIngrese la zona de la publicacion: ", "ERROR!",3) &&
-        !array_getStringInt(&cantidad,100,"\nIngrese la cantidad de afiches","ERROR!",3))
+        !array_getStringInt(&cantidad,100,"\nIngrese la cantidad de afiches: ","ERROR!",3))
 
         {
             retorno = 0;
@@ -198,12 +238,29 @@ int ventas_cerrarVentas(Ventas* arrayVentas, int limiteVentas, Cliente *arrayCli
     int retorno=-1;
     Cliente* clienteSeleccionado;
 
-
-    printf("Se va a modificar la siguiente venta\nNombre del archivo: %s\nZona: %s\nCantidad de afiches: %d\n\n",
+    limpiarPantalla();
+    if( arrayVentas != NULL && strcmp(arrayVentas->estadoVenta,"A COBRAR")==0)
+    {
+    clienteSeleccionado=cliente_busquedaPorID(arrayClientes,limiteClientes,arrayVentas->idCliente);
+    printf("Se va a cerrar la siguiente venta\nNombre del archivo: %s\nZona: %s\nCantidad de afiches: %d\n\n",
     arrayVentas->nombreDelArchivo,arrayVentas->zona, arrayVentas->cantidad);
+    printf("Informacion del cliente\nNombre: %s, %s\nCuit: %s\n\n",
+    clienteSeleccionado->nombre, clienteSeleccionado->apellido, clienteSeleccionado->cuit);
     pausarPantalla();
 
-    retorno =0;
+    retorno = 0;
+    strncpy(arrayVentas->estadoVenta,"COBRADA", 11);
+    printf("VENTA CERRADA!");
+    pausarPantalla();
+    }
+    else
+    {
+        printf("No se puede cerrar esta venta\n");
+        pausarPantalla();
+    }
+
+
+
     return retorno;
 
 
