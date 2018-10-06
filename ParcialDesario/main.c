@@ -49,6 +49,7 @@ int main()
                 {
                     cliente_altaCliente(clientes,indiceVacio,CANT_CLIENTES);
                     flagDatosCargados=1;
+                    contadorClientes++;
                 }
                 else
                 {
@@ -140,46 +141,61 @@ int main()
             case 5:
                 if(flagDatosCargados!=0)
                 {
-                    ventas_imprimirListaVentas(ventas,CANT_VENTAS,clientes,CANT_CLIENTES);
-                    array_getStringInt(&auxId,4,"Ingrese el ID de la ventaque hay que editar ", "ERROR! Ingrese un numero valido\n", 3);
-                    if(ventas_busquedaPorID(ventas,CANT_VENTAS,auxId)!= NULL)
-                    {
+                ventas_imprimirListaVentas(ventas,CANT_VENTAS,clientes,CANT_CLIENTES);
+                array_getStringInt(&auxId,4,"Ingrese el ID de la ventaque hay que editar ", "ERROR! Ingrese un numero valido\n", 3);
+                if(ventas_busquedaPorID(ventas,CANT_VENTAS,auxId)!= NULL)
+                {
                     ventaSeleccionada = ventas_busquedaPorID(ventas,CANT_VENTAS,auxId);
                     ventas_editarAfiches(ventaSeleccionada,1);
                     pausarPantalla();
                     limpiarPantalla();
-                    }
-                    else
-                    {
+                    break;
+                }
+                }
+                else
+                {
                     printf("NO HAY DATOS CARGADOS\n");
                     pausarPantalla();
-                    }
                 }
                 break;
             case 6:
             if(flagDatosCargados!=0)
+            {
+                ventas_imprimirListaVentas(ventas,CANT_VENTAS,clientes,CANT_CLIENTES);
+                array_getStringInt(&auxId,4,"Ingrese el ID de la ventaque hay que cerrar ", "ERROR! Ingrese un numero valido\n", 3);
+                if(ventas_busquedaPorID(ventas,CANT_VENTAS,auxId)!= NULL)
                 {
-                    ventas_imprimirListaVentas(ventas,CANT_VENTAS,clientes,CANT_CLIENTES);
-                    array_getStringInt(&auxId,4,"Ingrese el ID de la ventaque hay que cerrar ", "ERROR! Ingrese un numero valido\n", 3);
-                    if(ventas_busquedaPorID(ventas,CANT_VENTAS,auxId)!= NULL)
-                    {
                     ventaSeleccionada = ventas_busquedaPorID(ventas,CANT_VENTAS,auxId);
                     ventas_cerrarVentas(ventaSeleccionada,CANT_VENTAS,clientes,CANT_CLIENTES);
                     limpiarPantalla();
-                    }
-                    else
-                    {
-                    printf("NO HAY DATOS CARGADOS\n");
-                    pausarPantalla();
-                    }
+                    break;
                 }
+            }
+            else
+            {
+                printf("NO HAY DATOS CARGADOS\n");
+                pausarPantalla();
+            }
 
-                break;
+            break;
             case 7:
-                informar_listaClientesConVentasACobrar(clientes,ventas,CANT_CLIENTES,CANT_VENTAS);
+            if(flagDatosCargados!=0)
+            {
+                informar_ordenarApellido(clientes,CANT_CLIENTES,0);
+                cliente_imprimirListaClientes(clientes,CANT_CLIENTES);
+                //informar_clienteConMasAfiches(clientes,ventas,CANT_CLIENTES,CANT_VENTAS);
+                //informar_listaClientesConVentasACobrar(clientes,ventas,CANT_CLIENTES,CANT_VENTAS);
                 limpiarPantalla();
                 break;
+            }
+                else
+            {
+                printf("NO HAY DATOS CARGADOS\n");
+                pausarPantalla();
+            }
+            case 8:
+            retorno = 0;
          }
     }
-    return 0;
+   return retorno;
 }

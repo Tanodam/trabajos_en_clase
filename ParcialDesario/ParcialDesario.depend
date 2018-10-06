@@ -74,7 +74,7 @@
 
 1538827454 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/validator.h
 
-1538832399 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/Clientes.c
+1538836288 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/Clientes.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>
@@ -84,7 +84,7 @@
 
 1538830765 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/Clientes.h
 
-1538835314 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/main.c
+1538839084 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/main.c
 	<stdio.h>
 	<stdlib.h>
 	"Clientes.h"
@@ -111,7 +111,7 @@
 	"ctype.h"
 	"utn.h"
 
-1538835314 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/ventaAfiches.c
+1538836458 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/ventaAfiches.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>
@@ -120,7 +120,7 @@
 	"ventaAfiches.h"
 	"array.h"
 
-1538835259 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/informar.c
+1538838926 source:/home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/informar.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>
@@ -129,5 +129,5 @@
 	"ventaAfiches.h"
 	"array.h"
 
-1538833950 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/informar.h
+1538837228 /home/alumno/Escritorio/trabajos_en_clase/ParcialDesario/informar.h
 

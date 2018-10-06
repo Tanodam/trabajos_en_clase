@@ -190,10 +190,11 @@ int cliente_construirMenu()
         printf("5. Editar venta\n");
         printf("6. Cobrar Venta\n");
         printf("7. Imprimir Clientes\n");
+        printf("8. Salir\n");
         myFlush();
-        if(utn_getEntero(&respuesta,3,"Ingrese la opcion deseada\n","Opcion invalida\n", 1,7))
+        if(utn_getEntero(&respuesta,3,"Ingrese la opcion deseada\n","Opcion invalida\n", 1,8))
         {
-            return 0;
+            respuesta = 8;
         }
 
         return respuesta;

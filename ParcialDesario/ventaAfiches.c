@@ -21,8 +21,8 @@ static int ventas_obtenerID()
 
 /**
 *\brief Funcion que inicializa todos los estados de .IsEmpty en 1 para indicar que el campo esta vacio.
-*\param Empleado* array es el puntero que recibe a la estructua Empleados para trabajar con ella y sus campos
-*\param limite es la cantidad de empleados
+*\param Ventas* array es el puntero que recibe a la estructua Ventas para trabajar con ella y sus campos
+*\param limite es la cantidad de ventas
 *\return Retorno todos los campos de IsEmpty en 1
 */
 int ventas_inicializarArray(Ventas* array,int limite)
@@ -36,9 +36,9 @@ int ventas_inicializarArray(Ventas* array,int limite)
 }
 /**
 *\brief Funcion que busca un indice vacio comprando que el campo IsEmpty sea 1
-*\param Empleado* array es el puntero que recibe a la estructua Empleados para trabajar con ella y sus campos
-*\param limite es la cantidad de ventass
-*\param indice es el indice del campo IsEmpty que se va a consultar
+*\param Ventas* array es el puntero que recibe a la estructua Empleados para trabajar con ella y sus campos
+*\param limite es la cantidad de ventas
+*\param indice es el puntero donde se va a guardar el indice vacio obtenido
 *\return Exito=0 Error=1
 */
 int ventas_buscarIndiceVacio(Ventas* array,int limite,int*indice)
@@ -55,8 +55,8 @@ int ventas_buscarIndiceVacio(Ventas* array,int limite,int*indice)
     return retorno;
 }
 /**
-*\brief Funcion que realiza el alta de un ventas
-*\param Empleado* array es el puntero que recibe a la estructua Empleados para trabajar con ella y sus campos
+*\brief Funcion que realiza la venta de un ventas
+*\param ventas* array es el puntero que recibe a la estructua ventas para trabajar con ella y sus campos
 *\param indice es el indice del campo IsEmpty que se va a consultar
 *\param limite es la cantidad de ventass
 *\return Exito=0 Error=1

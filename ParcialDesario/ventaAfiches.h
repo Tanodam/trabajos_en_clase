@@ -1,5 +1,8 @@
 #ifndef VENTAAFICHES_H_INCLUDED
 #define VENTAAFICHES_H_INCLUDED
+#define CABA 1
+#define ZONA_SUR 2
+#define ZONA_OESTE 3
 
 typedef struct
 {
