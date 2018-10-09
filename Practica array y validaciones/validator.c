@@ -137,22 +137,22 @@ int array_StringFloatEsValido (char* pArray, int limiteArray)
 
     if(pArray!= NULL && limiteArray > 0)
     {
-        retorno = 1;
         for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
             {
+                retorno = 1;
                 if(pArray[i] != '.' && (pArray[i] < '0' || pArray[i] > '9'))
                 {
                     retorno = 0;
                     break;
                 }
-                if(pArray[i]== '.')
+                if(pArray[i] == '.')
                 {
-                    indexPuntos=i;
-                }
-                if(indexPuntos == 0)
-                {
-                    retorno = 0;
-                    break;
+                    contadorPuntos++;
+                    if(contadorPuntos != 1)
+                    {
+                        retorno = 0;
+                        break;
+                    }
                 }
             }
     }
@@ -174,7 +174,8 @@ int array_StringCharEsValido (char* pArray, int limiteArray)
         retorno = 1;
         for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
             {
-                if(pArray[i] < 'a' || pArray[i] > 'z') ///Verifica que no haya espacios ni caracteres fuera de rango
+                if((pArray[i] < 'a' || pArray[i] > 'z') &&
+                    pArray[i] == ' ')                     ///Verifica que no haya espacios ni caracteres fuera de rango
                 {
                     retorno = 0;
                     break;
@@ -198,25 +199,13 @@ char array_StringTelefonoEsValido (char* pArray, int limiteArray)
     for (i=0; i<strlen(pArray)-1; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
         {
             retorno = 1;
-            if(pArray[i] == '-')
-            {
-                contadorGuiones++;
-            }
-            if(pArray[i]!= '-' && (pArray[i] == ' ' || pArray[i] == '.') &&
+            if((pArray[i]!= '-' || pArray[i] == ' ') &&
                (pArray[i] < '0' || pArray[i] > '9'))
             {
                 retorno = 0;
                 break;
             }
-            if(contadorGuiones>=1 || contadorGuiones<=2)
-            {
-                retorno = 1;
-                break;
-            }
-            else
-            {
-                printf("Faltan guiones\n");
-            }
+
 
         }
         return retorno;

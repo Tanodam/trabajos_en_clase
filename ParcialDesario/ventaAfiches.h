@@ -10,7 +10,7 @@ typedef struct
     int isEmpty;
     int idCliente;
     char nombreDelArchivo[71];
-    char zona[21];
+    int zona;
     int cantidad;
     char estadoVenta[11];
 
@@ -24,7 +24,7 @@ Ventas* ventas_busquedaPorID(Ventas* array, int limite, int ID);
 Ventas* ventas_busquedaPorIDClientes(Ventas* array, int limite, int IDCliente);
 void ventas_borrarPorID(Ventas* array,int limite);
 int ventas_imprimirListaVentas(Ventas* arrayVentas,int limiteVentas, Cliente* arrayClientes, int limiteClientes);
-int ventas_ingresoForzado(Ventas* array,int limite,int cantidadAfiches,char* nombreArchivo,char* zona, int idCliente);
+int ventas_ingresoForzado(Ventas* array,int limite,int cantidadAfiches,char* nombreArchivo,int zona, int idCliente);
 int ventas_cerrarVentas(Ventas* arrayVentas, int limiteVentas, Cliente *arrayClientes, int limiteClientes);
 int ventas_editarAfiches(Ventas* array, int limite);
 

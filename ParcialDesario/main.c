@@ -30,10 +30,10 @@ int main()
     cliente_ingresoForzado(clientes,CANT_CLIENTES,"Gino","Nazzi","22-14071756-9");
 
 
-    ventas_ingresoForzado(ventas,CANT_VENTAS,3,"Nueva Publicidad","ZONASUR",2);
-    ventas_ingresoForzado(ventas,CANT_VENTAS,3,"Vieja Publicidad","ZONAESTE",2);
-    ventas_ingresoForzado(ventas,CANT_VENTAS,6,"Burger Kong", "Zona Oeste",1);
-    ventas_ingresoForzado(ventas,CANT_VENTAS,14,"Nuevas Abidas HiperSport3", "CABA",0);
+    ventas_ingresoForzado(ventas,CANT_VENTAS,3,"Nueva Publicidad",1,2);
+    ventas_ingresoForzado(ventas,CANT_VENTAS,3,"Vieja Publicidad",2,2);
+    ventas_ingresoForzado(ventas,CANT_VENTAS,6,"Burger Kong",2,1);
+    ventas_ingresoForzado(ventas,CANT_VENTAS,14,"Nuevas Abidas HiperSport3",3,0);
 
     flagDatosCargados=1;
     contadorClientes=3;
@@ -182,6 +182,7 @@ int main()
             if(flagDatosCargados!=0)
             {
                 informar_ordenarApellido(clientes,CANT_CLIENTES,0);
+                //informar_listaClientesConVentasCobradas(clientes,ventas,CANT_CLIENTES,CANT_VENTAS);
                 cliente_imprimirListaClientes(clientes,CANT_CLIENTES);
                 //informar_clienteConMasAfiches(clientes,ventas,CANT_CLIENTES,CANT_VENTAS);
                 //informar_listaClientesConVentasACobrar(clientes,ventas,CANT_CLIENTES,CANT_VENTAS);

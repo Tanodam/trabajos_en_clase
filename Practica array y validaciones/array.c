@@ -83,7 +83,7 @@ char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensaje
     return retorno;
 }
 /**
-*\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringCharEsValido.
+*\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringMailEsValido.
 *\param pArray Puntero a la direccion de memoria donde se va almacenar el string validado
 *\param mensaje[] es el mensaje que se le va a mostrar al usuario
 *\param mensajeError[] es el mensaje que se le va a mostrar al usuario si hay un error en la carga de datos
@@ -129,7 +129,7 @@ char array_getMail(char* pArray, int limiteArray, char* mensaje, char* mensajeEr
 }
 
 /**
-*\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringCharEsValido.
+*\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringTelefonoEsValido.
 *\param pArray Puntero a la direccion de memoria donde se va almacenar el string validado
 *\param mensaje[] es el mensaje que se le va a mostrar al usuario
 *\param mensajeError[] es el mensaje que se le va a mostrar al usuario si hay un error en la carga de datos
@@ -173,9 +173,19 @@ char array_getTelefono(char* pArray, int limiteArray, char* mensaje, char* mensa
 
     return retorno;
 }
+
+/**
+*\brief Solicita string al usuario y lo devuelve validado mediante la funcion StringFloatEsValido.
+*\param pArray Puntero a la direccion de memoria donde se va almacenar el string validado
+*\param mensaje[] es el mensaje que se le va a mostrar al usuario
+*\param mensajeError[] es el mensaje que se le va a mostrar al usuario si hay un error en la carga de datos
+*\return Exito=0 y Error=1
+*
+*/
 char array_getStringFloat(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos)
 {
     int retorno= -1;
+
     int contadorIntentos= 0;
     char buffer[BUFFER_STR];
 
@@ -191,6 +201,7 @@ char array_getStringFloat(char* pArray, int limiteArray, char* mensaje, char* me
                 {
                     strncpy(pArray,buffer,limiteArray);
                     retorno = 0;
+                    break;
 
                 }
                 else

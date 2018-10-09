@@ -13,6 +13,7 @@
     char miCelular[STRINGLEN];
     char miCorreo[STRINGLEN];
     char miApellido [STRINGLEN];
+    float edad;
 
 
 //    if(array_getNombre(miNombre,STRINGLEN,"Ingrese su nombre: ","NOMBRE INVALIDO\n", 3)==0)
@@ -25,10 +26,15 @@
  //   }
     if(array_getStringFloat(miEdad,STRINGLEN,"Ingrese su edad: ","EDAD INVALIDA\n", 50 )==0)
     {
-        printf("La edad ingresada es %s", miEdad);
+        edad=atof(miEdad);
+        printf("La edad ingresada es %f", edad);
     }
 //    if(array_getMail(miCorreo,STRINGLEN,"Ingrese su correo: ","CORREO INVALIDO\n",50 )==0)
 //    {
 //        printf("El correo ingresado es %s", miCorreo);
 //    }
+    if(array_getTelefono(miCelular,STRINGLEN,"Ingrese su celular: ","Celular invalido\n", 50 )==0)
+    {
+        printf("El celular ingresado es %s", miCelular);
+    }
 }
