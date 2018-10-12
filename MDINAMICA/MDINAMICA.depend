@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1539306332 source:/home/alumno/Escritorio/MDINAMICA/main.c
+	<stdio.h>
+	<stdlib.h>
+
