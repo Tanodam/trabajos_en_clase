@@ -3,6 +3,7 @@
 
 int utn_getEntero(int*pEdad,int reintentos,char* msg,char*msgError,int max,int min);
 int utn_getFloat(float*pFloat,int reintentos,char* msg,char*msgError,float min,float max);
+int getStrings(char* pBuffer,int limite);
 
 
 #endif // UTN_H_INCLUDED

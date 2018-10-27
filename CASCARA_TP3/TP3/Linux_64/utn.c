@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 #include "utn.h"
+#include "array.h"
 
 static int getFloat(float*pBuffer);
 int getString(char* bufferString,int limite);
@@ -81,7 +82,7 @@ static int getInt(int* pBuffer)
 {
     char bufferString[200];
     int retorno =-1;
-    if(getString(bufferString,200)==0 && isInt(bufferString)==0){
+    if(getStrings(bufferString,200)==0 && isInt(bufferString)==0){
         *pBuffer=atoi(bufferString);
         retorno=0;
     }
@@ -143,7 +144,7 @@ static int isFloat(char* pBuffer)
 *\param limiteArray es el tamaño del array de caracteres donde se va a almacenar el string
 *\return Exito=0 y Error=-1
 */
-int getString(char* pBuffer,int limite)
+int getStrings(char* pBuffer,int limite)
 {
     char bufferString[4096];
     int retorno =-1;
@@ -168,7 +169,7 @@ int getString(char* pBuffer,int limite)
 static int getFloat(float*pBuffer){
     char bufferString[200];
     int retorno =-1;
-    if(getString(bufferString,200)==0 && isFloat(bufferString)==0){
+    if(getStrings(bufferString,200)==0 && isFloat(bufferString)==0){
         *pBuffer=atof(bufferString);
         retorno=0;
     }

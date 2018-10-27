@@ -87,3 +87,71 @@
 
 1533133022 /home/alumno/Descargas/CASCARA_TP3/TP3/Linux_64/parser.h
 
+1540601884 source:/home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+
+1540560920 /home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/LinkedList.h
+
+1540603256 /home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/Employee.h
+
+1540560920 /home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/parser.h
+
+1540604629 source:/home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/Employee.c
+	"Employee.h"
+	"LinkedList.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validator.h"
+	"utn.h"
+
+1540604231 source:/home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1540560920 /home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/Controller.h
+
+1540560920 source:/home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1540600194 source:/home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1540592663 /home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/utn.h
+
+1540601177 source:/home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+
+1540592635 source:/home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/array.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1540592529 /home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/array.h
+
+1540597934 /home/damian/Escritorio/trabajos_en_clase/CASCARA_TP3/TP3/Linux_64/validator.h
+

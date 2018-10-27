@@ -83,8 +83,9 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     int i;
     Employee* auxPunteroEmpleado;
     char nombre[50];
-    int* horasTrabajadas = 0;
+    int horasTrabajadas = 0;
     int sueldo = 0;
+    int id=0;
     if(pArrayListEmployee!= NULL)
     {
         retorno = 0;
@@ -92,8 +93,10 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
         {
             auxPunteroEmpleado = ll_get(pArrayListEmployee,i);
             Employee_getNombre(auxPunteroEmpleado,nombre);
-            Employee_getSueldo(auxPunteroEmpleado,sueldo);
-            printf("\nNombre: %s - Sueldo %d",nombre, &sueldo);
+            Employee_getId(auxPunteroEmpleado,&id);
+            Employee_getSueldo(auxPunteroEmpleado,&sueldo);
+            Employee_getHorasTrabajadas(auxPunteroEmpleado,&horasTrabajadas);
+            printf("\nID: %d - Nombre: %s ",id,nombre);
         }
     }
     return retorno;

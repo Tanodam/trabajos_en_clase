@@ -30,13 +30,16 @@ int main()
                 printf("Tamanio de lista :%d\n", ll_len(listaEmpleados));
                 controller_loadFromText("data.csv",listaEmpleados);
                 printf("Tamanio de lista :%d", ll_len(listaEmpleados));
-                option = 6;
+                option = 3;
                 break;
             case 6:
                 controller_ListEmployee(listaEmpleados);
                 option = 10;
                 break;
             case 3:
+                Employee_nuevoEmpleado(listaEmpleados);
+                printf("Tamanio de lista :%d", ll_len(listaEmpleados));
+                option = 6;
                 break;
         }
     }while(option != 10);

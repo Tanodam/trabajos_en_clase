@@ -3,9 +3,9 @@
 typedef struct
 {
     int id;
-    char nombre[50];
+    char nombre[128];
     int horasTrabajadas;
-    float sueldo;
+    int sueldo;
 }Employee;
 
 
@@ -30,5 +30,7 @@ int Employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas);
 int Employee_setSueldo(Employee* this,int sueldo);
 
 int Employee_getSueldo(Employee* this,int* sueldo);
+
+Employee* Employee_nuevoEmpleado(void* pArrayListEmployee);
 
 #endif // employee_H_INCLUDED

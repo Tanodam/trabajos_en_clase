@@ -155,7 +155,7 @@ int array_StringIntEsValido(char* pArray, int limiteArray)
         retorno = 1;
         for (i=0;i < limiteArray && pArray[i] != '\0'; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
             {                ///0                 9
-                if(pArray[i] < 48 || pArray[i] > 57 ) ///Verifica que no haya espacios ni caracteres fuera de rango
+                if(pArray[i] < '0' || pArray[i] > '9' ) ///Verifica que no haya espacios ni caracteres fuera de rango
                     {
                         retorno = 0;
                         break;
@@ -176,15 +176,16 @@ int array_StringCharEsValido (char* pArray, int limiteArray)
     int i;
     int indiceEspacio=0;
 
-    if((pArray!= NULL && limiteArray > 0) && (strlen(pArray) > 0))
+    if(pArray!= NULL && strlen(pArray) < limiteArray)
     {
         retorno = 1;
-
         for (i=1;i<limiteArray && pArray[i] != '\0'; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
             {
                 switch(pArray[i])
                 {
                     case 39: ///Apostrofe
+                        break;
+                    case 45: ///Apostrofe
                         break;
                     case 32: ///Espacio
                         indiceEspacio=i;
@@ -194,9 +195,9 @@ int array_StringCharEsValido (char* pArray, int limiteArray)
                         }
                         break;
                 default:           ///a                  z
-                    if((pArray[i] < 97) || (pArray[i] > 122))///Verifica que no haya espacios ni caracteres fuera de rango
+                    if((pArray[i] < 'a') || (pArray[i] > 'z'))///Verifica que no haya espacios ni caracteres fuera de rango
                     {                ///A                   Z
-                        if((pArray[i] < 65) || (pArray[i] > 90))
+                        if((pArray[i] < 'A') || (pArray[i] > 'Z'))
                         {
                             retorno = 0;
                         }
@@ -230,6 +231,35 @@ int isValidCuilOrCuit(char *pBuffer, int limite)
         for(i=0; i < limite && pBuffer[i] != '\0'; i++)
         {
             if((pBuffer[i] < '0' || pBuffer[i] > '9') && i!=2 && i!=11)
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+
+/**
+ * \brief Verifica si el string recibido tiene solo letras
+ * \param array Es el array para validar su tipo
+ * \return 1 si contiene solo ' ' y letras y 0 si no lo es
+ *
+ */
+int validacion_Letras(char* array,int size)
+{
+    int retorno = 0;
+    int i;
+    int digitosIngresados;
+
+    digitosIngresados = strlen(array);
+
+    if(array != NULL)
+    {
+        retorno = 1;
+        for(i=0;i < digitosIngresados && array[i] != '\0';i++)
+        {
+            if((tolower(array[i]) < 'a' || tolower(array[i]) > 'z') && array[i]!= ' ')
             {
                 retorno = 0;
                 break;
