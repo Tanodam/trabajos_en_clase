@@ -31,11 +31,11 @@ int array_StringMailEsValido (char* pArray, int limiteArray)
             }
 ///Valida que antes del arroba haya solo letras, numeros, punto(.), guion alto(-) y guion bajo(_)
             if (indexArroba == 0 && (pArray[i] < 'a' || pArray[i] > 'z') &&
-                (pArray[i] < '0' || pArray[i] > '9') && (pArray[i] != '.' && pArray[i] == '-' && pArray[i] == '_'))
-                {
-                    retorno = 0;
-                    break;
-                }
+                    (pArray[i] < '0' || pArray[i] > '9') && (pArray[i] != '.' && pArray[i] == '-' && pArray[i] == '_'))
+            {
+                retorno = 0;
+                break;
+            }
 ///Valida que el usuario ingrese el arroba
             if (pArray[i] == '@')
             {
@@ -107,37 +107,37 @@ int array_StringMailEsValido (char* pArray, int limiteArray)
 */
 int array_StringFloatEsValido (char* pArray, int limiteArray)
 {
-   int i=0;
-   int retorno = 0;
-   int contadorPuntos = 0;
+    int i=0;
+    int retorno = 0;
+    int contadorPuntos = 0;
 
 
-   if(pArray != NULL && limiteArray > 0)
-   {
-       retorno = 1;
-       for(i=0;i < limiteArray && pArray[i] != '\0';i++)
-       {
+    if(pArray != NULL && limiteArray > 0)
+    {
+        retorno = 1;
+        for(i=0; i < limiteArray && pArray[i] != '\0'; i++)
+        {
             switch(pArray[i])
             {
-                case 46: //Punto
-                    if(i==0 || i==(strlen(pArray)-1))
-                    {
-                        retorno = 0;
-                        break;
-                    }
-                    contadorPuntos++;
+            case 46: //Punto
+                if(i==0 || i==(strlen(pArray)-1))
+                {
+                    retorno = 0;
                     break;
-                default:          ///0                 9
-                    if((pArray[i] < 48 || pArray[i] > 57) || contadorPuntos > 1)
-                    {
-                        retorno = 0;
-                    }
-                    break;
+                }
+                contadorPuntos++;
+                break;
+            default:          ///0                 9
+                if((pArray[i] < 48 || pArray[i] > 57) || contadorPuntos > 1)
+                {
+                    retorno = 0;
+                }
+                break;
             }
-       }
-   }
+        }
+    }
 
-return retorno;
+    return retorno;
 }
 /**
 *\brief [Funcion interna de GetStringInt] Valida que el usuario solo haya ingresado caracteres del 0 al 9
@@ -145,23 +145,23 @@ return retorno;
 *\param limiteArray tamaño del array
 *\return Exito=0 y Error=-1
 */
-int array_StringIntEsValido(char* pArray, int limiteArray)
+int array_StringIntEsValido(char* pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-
-
-    if  ((pArray != NULL && limiteArray > 0))
+    if  ((pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0) &&
+            (pBuffer[0] == '-' || pBuffer[0] == '+' ||
+             (pBuffer[0]>='0' && pBuffer[0]<='9')))
     {
         retorno = 1;
-        for (i=0;i < limiteArray && pArray[i] != '\0'; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
-            {                ///0                 9
-                if(pArray[i] < 48 || pArray[i] > 57 ) ///Verifica que no haya espacios ni caracteres fuera de rango
-                    {
-                        retorno = 0;
-                        break;
-                    }
+        for(i=1; i < limite && pBuffer[i] != '\0'; i++)
+        {
+            if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
+            {
+                retorno = 0;
+                break;
             }
+        }
     }
     return retorno;
 }
@@ -181,34 +181,37 @@ int array_StringCharEsValido (char* pArray, int limiteArray)
     {
         retorno = 1;
 
-        for (i=1;i<limiteArray && pArray[i] != '\0'; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
+        for (i=1; i<limiteArray && pArray[i] != '\0'; i++) ///Recorre el array hasta el ultimo caracter ingresado, no incluye el \0
+        {
+            switch(pArray[i])
             {
-                switch(pArray[i])
+            case 39: ///Apostrofe
+                break;
+            case 45: ///Apostrofe
+                break;
+            case 32: ///Espacio
+                indiceEspacio=i;
+                if(indiceEspacio!=0)
                 {
-                    case 39: ///Apostrofe
-                        break;
-                    case 32: ///Espacio
-                        indiceEspacio=i;
-                        if(indiceEspacio!=0)
-                        {
-                            pArray[indiceEspacio+1]=toupper(pArray[indiceEspacio+1]);
-                        }
-                        break;
-                default:           ///a                  z
-                    if((pArray[i] < 97) || (pArray[i] > 122))///Verifica que no haya espacios ni caracteres fuera de rango
-                    {                ///A                   Z
-                        if((pArray[i] < 65) || (pArray[i] > 90))
-                        {
-                            retorno = 0;
-                        }
-                    }
-                    break;
-
-
+                    pArray[indiceEspacio+1]=toupper(pArray[indiceEspacio+1]);
                 }
+                break;
+            default:           ///a                  z
+                if((pArray[i] < 97) || (pArray[i] > 122))///Verifica que no haya espacios ni caracteres fuera de rango
+                {
+                    ///A                   Z
+                    if((pArray[i] < 65) || (pArray[i] > 90))
+                    {
+                        retorno = 0;
+                    }
+                }
+                break;
 
 
             }
+
+
+        }
     }
     return retorno;
 }
@@ -257,7 +260,7 @@ int validacion_Letras(char* array,int size)
     if(array != NULL)
     {
         retorno = 1;
-        for(i=0;i < digitosIngresados && array[i] != '\0';i++)
+        for(i=0; i < digitosIngresados && array[i] != '\0'; i++)
         {
             if((tolower(array[i]) < 'a' || tolower(array[i]) > 'z') && array[i]!= ' ' && array[i]!= '-')
             {

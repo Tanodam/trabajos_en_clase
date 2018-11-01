@@ -293,3 +293,65 @@ int array_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
     }
     return retorno;
 }
+/**
+ * \brief Solicita un texto al usuario y lo devuelve
+ * \param mensaje Es el mensaje a ser mostrado
+ * \param input Array donde se cargará el texto ingresado
+ * \return void
+ */
+int array_getStringAll(char* input,int limiteArray)
+{
+    int retorno = -1;
+    char buffer[limiteArray];
+    int length;
+
+    do
+    {
+        myFlush();
+        fgets(buffer,limiteArray,stdin);//Se pide el dato limitado por el tamaño del array, parametro 'limiteArray'
+
+        length = strlen(buffer);
+        if(length != limiteArray-1 || buffer[limiteArray-2] == '\n')
+        {
+            buffer[length-1] = '\0';
+        }
+        strncpy(input,buffer,limiteArray);
+
+        retorno = 0;
+    }while(input == NULL && limiteArray < 0);
+
+    return retorno;
+}
+/**
+ * \brief Solicita un texto al usuario y lo devuelve
+ * \param input Array donde se cargará el texto ingresado
+ * \param mensaje Es el mensaje a ser mostrado
+ * \param msjError Es el mensaje de error a ser mostrado
+ * \return Retorna 0 si se pudo pedir y validar string si no retorna error
+ */
+int array_getLetras(char* pArray,int limiteArray,char* mensaje,char* msjError,int reintentos)
+{
+    char buffer[limiteArray];
+    int retorno = -1;
+
+     if(pArray != NULL && limiteArray > 0 && mensaje != NULL &&
+       msjError != NULL && reintentos >= 0)
+    {
+        do
+        {
+            reintentos--;
+            printf("%s",mensaje);
+            if(array_getStringAll(buffer,limiteArray) == 0 && validacion_Letras(buffer,limiteArray))
+            {
+                strncpy(pArray,buffer,limiteArray);//Se copia string cargado a variable local
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("%s",msjError);
+            }
+        }while(reintentos >= 0);
+    }
+    return retorno;
+}

@@ -33,4 +33,8 @@ int Employee_getSueldo(Employee* this,int* sueldo);
 
 Employee* Employee_nuevoEmpleado(void* pArrayListEmployee);
 
+int Employee_getNextID(void* pArrayListEmployee);
+
+Employee* Employee_getById(void* pArrayListEmployee,int idABuscar);
+
 #endif // employee_H_INCLUDED
