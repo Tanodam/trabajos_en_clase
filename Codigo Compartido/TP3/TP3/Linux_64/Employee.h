@@ -11,7 +11,7 @@ typedef struct
 
 Employee* Employee_new();
 
-void Employee_delete(Employee* this);
+int Employee_delete(Employee* this);
 
 Employee* Employee_newConParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr,char* sueldoStr);
 
@@ -35,6 +35,6 @@ Employee* Employee_nuevoEmpleado(void* pArrayListEmployee);
 
 int Employee_getNextID(void* pArrayListEmployee);
 
-Employee* Employee_getById(void* pArrayListEmployee,int idABuscar);
+int Employee_editarEmpleado(void* pArrayListEmployee);
 
 #endif // employee_H_INCLUDED

@@ -3,6 +3,8 @@
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
+#include "utn.h"
+#include "array.h"
 
 
 
@@ -161,7 +163,7 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
     return 1;
 }
 
-void controller_init()
+int controller_init()
 {
     int option;
     LinkedList* listaEmpleados = ll_newLinkedList();
@@ -214,7 +216,7 @@ void controller_init()
                       break;
                   }
                       printf("\nPulse Enter para continuar");
-                      __fpurge(stdin);
+                      myFlush();
                       getchar();
                   }while(option != 10);
                       return 0;

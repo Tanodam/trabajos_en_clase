@@ -362,3 +362,74 @@
 	"ctype.h"
 	"utn.h"
 
+1541084413 source:/home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/array.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1541073871 /home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/utn.h
+
+1541084332 /home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/array.h
+
+1541073871 /home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/validator.h
+
+1541074035 source:/home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"utn.h"
+	"array.h"
+
+1541073871 /home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/LinkedList.h
+
+1541077450 /home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Employee.h
+
+1541073871 /home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/parser.h
+
+1541073871 source:/home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1541073871 /home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Controller.h
+
+1541073871 source:/home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1541073871 source:/home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1541073871 source:/home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+
+1541084325 source:/home/xubuntu/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Employee.c
+	"Employee.h"
+	"LinkedList.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validator.h"
+	"utn.h"
+

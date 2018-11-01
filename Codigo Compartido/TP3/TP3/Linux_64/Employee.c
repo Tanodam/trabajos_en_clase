@@ -67,22 +67,22 @@ Employee* Employee_new()
 *\param idIngresado Es ID para encontrar
 *\return Retorna el elemento sino retorna NULL
 */
-Employee* Employee_getById(void* pArrayListEmployee,int idABuscar)
+Employee* Employee_getById(LinkedList* pArrayListEmployee,int idIngresado)
 {
     Employee* retorno = NULL;
-    Employee* auxiliarEmpleado;
-    int indice;
-    int auxiliarID;
+    int index;
+    Employee* auxEmployee;
+    int auxID;
 
     if(pArrayListEmployee != NULL)
     {
-        for(indice=0;indice<ll_len(pArrayListEmployee);indice++)//Recorro todo el array hasta el LEN
+        for(index=0;index<ll_len(pArrayListEmployee);index++)//Recorro todo el array hasta el LEN
         {
-            auxiliarEmpleado = ll_get(pArrayListEmployee,indice);//Obtengo el elemento del array en posicion indice
-            Employee_getId(auxiliarEmpleado,&auxiliarID);//Obtengo el ID del elemento
-            if(auxiliarID == idABuscar)
+            auxEmployee = ll_get(pArrayListEmployee,index);//Obtengo el elemento del array en posicion index
+            Employee_getId(auxEmployee,&auxID);//Obtengo el ID del elemento
+            if(auxID == idIngresado)
             {
-                retorno = auxiliarEmpleado;
+                retorno = auxEmployee;
                 break;
             }
         }
@@ -90,48 +90,20 @@ Employee* Employee_getById(void* pArrayListEmployee,int idABuscar)
     return retorno;
 }
 
-void Employee_delete(Employee* this)
-{
-    free(this);
-}
-int input(char* mensaje,char* campo,int size, int (*validacion)(char*))
-{
-    int retorno = -1;
-    int reintentos = 2;
-
-    if(campo != NULL)
-    {
-        do
-        {
-            printf("\nIngrese %s: ",mensaje);
-            array_getStringAll(campo,size);
-            if((*validacion)(campo))//Validar segun tipo
-            {
-                campo = (char*)realloc(campo,sizeof(char)*strlen(campo));//Ver realloc
-                retorno = 0;
-                break;
-            }
-            else
-            {
-                printf("\nIntente nuevamente");
-            }
-            reintentos--;
-        }while(reintentos > 0);
-    }
-    return retorno;
-}
-
-Employee* Employee_editarEmpleado(void* pArrayListEmployee)
+int Employee_editarEmpleado(void* pArrayListEmployee)
 {
     Employee* this = NULL;
     int retorno = -1;
     char bufferID[BUFFER];
+    char letra;
     int opcion;
-    int idIngresado;;
+    int idIngresado=0;
 
-    if(pArrayListEmployee != NULL && array_getStringInt(bufferID,BUFFER,"\nIngrese el id que hay que buscar","\nERROR! Ingrese un numero",2))
+    if(pArrayListEmployee != NULL )
     {
+        array_getStringAll(bufferID,BUFFER, "\nIngrese el ID que hay que buscar\t");
         idIngresado = atoi(bufferID);
+        printf("%d", idIngresado);
         this = Employee_getById(pArrayListEmployee,idIngresado);
         if(this != NULL)
         {
@@ -144,7 +116,9 @@ Employee* Employee_editarEmpleado(void* pArrayListEmployee)
                 {
                     retorno = 0;
                     case 1 :
-                        employee_modify(this,"nombre",isValidName,Employee_setNombre);
+                        array_getLetras(letra,2,"\nIngrese el nombre","ERROR!",2);
+                        printf("%c", letra);
+
                         break;
                     case 2 :
                         employee_modify(this,"sueldo",isValidSueldo,Employee_setSueldo);
@@ -164,7 +138,7 @@ Employee* Employee_editarEmpleado(void* pArrayListEmployee)
             printf("\nID no encontrado");
         }
     }
-return retorno;
+    return retorno;
 }
 Employee* Employee_newConParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr,char* sueldoStr)
 {
@@ -187,6 +161,21 @@ Employee* Employee_newConParametros(char* idStr,char* nombreStr,char* horasTraba
     return NULL;
 }
 /**
+*\brief Libera espacio en memoria ocupado por elemento
+*\param tihs Es el elemento
+*\return Retorna 0 si logra liberar sino retorna -1
+*/
+int Employee_delete(Employee* this)
+{
+    int retorno = -1;
+    if(this != NULL)
+    {
+        free(this);
+        retorno = 0;
+    }
+    return retorno;
+}
+/**
 *\brief Se modifica un campo del elemento
 *\param this Es el elemento a modificar
 *\param validacion Es el puntero a la funcion de validacion
@@ -201,7 +190,7 @@ int employee_modify(Employee* this, char* mensaje, int (*validacion)(char*),int 
 
     if(this != NULL && mensaje != NULL && validacion != NULL && set != NULL)
     {
-        input(mensaje,buffer,BUFFER,(*validacion));
+        //input(mensaje,buffer,BUFFER,(*validacion));
         array_getLetras(option,2,"\nDesea modificar dato? S/N\n","\nError.Dato invalido",2);
         if(buffer != NULL && !strcasecmp("s",option))
         {

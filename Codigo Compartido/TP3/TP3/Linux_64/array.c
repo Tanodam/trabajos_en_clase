@@ -232,10 +232,10 @@ int array_getStringInt(int* pArray, int limiteArray, char* mensaje, char* mensaj
         {
             printf("%s", mensaje);
             contadorIntentos++;
-            retorno = 0;
             if(!getString(buffer,limiteArray) && array_StringIntEsValido(buffer, limiteArray))
             {
-                    *pArray=atoi(buffer);
+
+                    retorno = 0;
                     break;
             }
                 else
@@ -299,7 +299,7 @@ int array_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
  * \param input Array donde se cargará el texto ingresado
  * \return void
  */
-int array_getStringAll(char* input,int limiteArray)
+int array_getStringAll(char* input,int limiteArray, char* mensaje)
 {
     int retorno = -1;
     char buffer[limiteArray];
@@ -308,16 +308,17 @@ int array_getStringAll(char* input,int limiteArray)
     do
     {
         myFlush();
+        printf("%s",mensaje);
         fgets(buffer,limiteArray,stdin);//Se pide el dato limitado por el tamaño del array, parametro 'limiteArray'
 
         length = strlen(buffer);
         if(length != limiteArray-1 || buffer[limiteArray-2] == '\n')
         {
             buffer[length-1] = '\0';
+            retorno = 0;
         }
         strncpy(input,buffer,limiteArray);
 
-        retorno = 0;
     }while(input == NULL && limiteArray < 0);
 
     return retorno;
@@ -341,7 +342,7 @@ int array_getLetras(char* pArray,int limiteArray,char* mensaje,char* msjError,in
         {
             reintentos--;
             printf("%s",mensaje);
-            if(array_getStringAll(buffer,limiteArray) == 0 && validacion_Letras(buffer,limiteArray))
+            if(getString(buffer,limiteArray) == 0 && validacion_Letras(buffer,limiteArray))
             {
                 strncpy(pArray,buffer,limiteArray);//Se copia string cargado a variable local
                 retorno = 0;
