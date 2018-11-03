@@ -50,13 +50,17 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     int retorno = -1;
-    if(pArrayListEmployee != NULL)
+    if(pArrayListEmployee != NULL && ll_len(pArrayListEmployee) > 0)
     {
         if(!Employee_nuevoEmpleado(pArrayListEmployee))
         {
             retorno = 0;
             printf("\nSe agrego un nuevo usuario");
         }
+    }
+    else
+    {
+        printf("No hay ninguna lista cargada");
     }
     return retorno;
 }
@@ -72,13 +76,17 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     int retorno = -1;
 
-    if(pArrayListEmployee != NULL)
+     if(pArrayListEmployee != NULL && ll_len(pArrayListEmployee) > 0)
     {
         if(!Employee_editarEmpleado(pArrayListEmployee))
         {
             printf("\nEl empleado fue modificado");
             retorno = 0;
         }
+    }
+    else
+    {
+        printf("No hay ninguna lista cargada");
     }
 return retorno;
 }
@@ -165,8 +173,9 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 
 int controller_init()
 {
-    int option;
+    int option = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
+    Employee arrayEmpleadosBaja[1000];
     do
     {
         system("clear");
@@ -195,7 +204,7 @@ int controller_init()
                       controller_editEmployee(listaEmpleados);
                       break;
                       case 5:
-                      controller_removeEmployee(listaEmpleados);
+                      controller_removeEmployee(listaEmpleados, arrayEmpleadosBaja);
                       break;
                       case 6:
                       controller_ListEmployee(listaEmpleados);

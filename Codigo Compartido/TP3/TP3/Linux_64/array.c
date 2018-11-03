@@ -1,4 +1,5 @@
 #include <stdio_ext.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "string.h"
 #include "ctype.h"
@@ -85,7 +86,7 @@ char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensaje
             if(!getString(buffer,limiteArray))
             {
                 retorno = 0;
-                for(i=0;i<limiteArray;i++)
+                for(i=0; i<limiteArray; i++)
                 {
                     myFlush();
                     buffer[i]=tolower(buffer[i]); //Convierto todos los caracteres del array a minusculas para validarlos
@@ -109,7 +110,8 @@ char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensaje
                     }
                 }
             }
-        }while(contadorIntentos <= reintentos);
+        }
+        while(contadorIntentos <= reintentos);
     }
 
     return retorno;
@@ -155,7 +157,8 @@ char array_getMail(char* pArray, int limiteArray, char* mensaje, char* mensajeEr
                 }
 
             }
-        }while(contadorIntentos <= reintentos);
+        }
+        while(contadorIntentos <= reintentos);
     }
 
     return retorno;
@@ -182,30 +185,30 @@ int array_getStringFloat(float* pArray, int limiteArray,int minimo, int maximo, 
             printf("%s", mensaje);
             contadorIntentos++;
             if(!getString(buffer,limiteArray)&&
-               (array_StringFloatEsValido(buffer, limiteArray)) &&
-               (atoi(buffer)<=maximo && atoi(buffer)>=minimo))
+                    (array_StringFloatEsValido(buffer, limiteArray)) &&
+                    (atoi(buffer)<=maximo && atoi(buffer)>=minimo))
             {
-                    *pArray=atof(buffer);
-                    retorno = 0;
+                *pArray=atof(buffer);
+                retorno = 0;
+                break;
+
+
+
+            }
+            else
+            {
+                printf("%s", mensajeError);
+                if(contadorIntentos==reintentos)
+                {
+                    printf("\nSe han superado los intenos maximos permitidos");
+                    retorno = -1;
                     break;
 
 
-
-            }
-                else
-                {
-                    printf("%s", mensajeError);
-                    if(contadorIntentos==reintentos)
-                    {
-                        printf("\nSe han superado los intenos maximos permitidos");
-                        retorno = -1;
-                        break;
-
-
-                    }
                 }
-
             }
+
+        }
         while(contadorIntentos <= reintentos);
     }
 
@@ -220,7 +223,7 @@ int array_getStringFloat(float* pArray, int limiteArray,int minimo, int maximo, 
 *\return Exito=0 y Error=1
 *
 */
-int array_getStringInt(int* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos)
+int array_getStringInt(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos)
 {
     int retorno= -1;
     int contadorIntentos= 0;
@@ -235,23 +238,23 @@ int array_getStringInt(int* pArray, int limiteArray, char* mensaje, char* mensaj
             if(!getString(buffer,limiteArray) && array_StringIntEsValido(buffer, limiteArray))
             {
 
-                    retorno = 0;
-                    break;
+                retorno = 0;
+                break;
             }
-                else
+            else
+            {
+                printf("%s", mensajeError);
+                if(contadorIntentos==reintentos)
                 {
-                    printf("%s", mensajeError);
-                    if(contadorIntentos==reintentos)
-                    {
-                        printf("\nSe han superado los intenos maximos permitidos");
-                        retorno= 0;
-                        break;
-                    }
+                    printf("\nSe han superado los intenos maximos permitidos");
+                    retorno= 0;
+                    break;
                 }
-
             }
-        while(contadorIntentos <= reintentos);
+
         }
+        while(contadorIntentos <= reintentos);
+    }
 
     return retorno;
 }
@@ -266,7 +269,7 @@ int array_getStringInt(int* pArray, int limiteArray, char* mensaje, char* mensaj
 *
 */
 int array_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
-                        char *mensajeError, int reintentos)
+                          char *mensajeError, int reintentos)
 {
     int retorno=-1;
     char buffer[4096];
@@ -278,7 +281,7 @@ int array_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
             reintentos--;
             printf("%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                isValidCuilOrCuit(buffer, limite))
+                    isValidCuilOrCuit(buffer, limite))
             {
                 strncpy(pDocumento, buffer, limite);
                 retorno = 0;
@@ -319,7 +322,8 @@ int array_getStringAll(char* input,int limiteArray, char* mensaje)
         }
         strncpy(input,buffer,limiteArray);
 
-    }while(input == NULL && limiteArray < 0);
+    }
+    while(input == NULL && limiteArray < 0);
 
     return retorno;
 }
@@ -335,8 +339,8 @@ int array_getLetras(char* pArray,int limiteArray,char* mensaje,char* msjError,in
     char buffer[limiteArray];
     int retorno = -1;
 
-     if(pArray != NULL && limiteArray > 0 && mensaje != NULL &&
-       msjError != NULL && reintentos >= 0)
+    if(pArray != NULL && limiteArray > 0 && mensaje != NULL &&
+            msjError != NULL && reintentos >= 0)
     {
         do
         {
@@ -352,7 +356,54 @@ int array_getLetras(char* pArray,int limiteArray,char* mensaje,char* msjError,in
             {
                 printf("%s",msjError);
             }
-        }while(reintentos >= 0);
+        }
+        while(reintentos >= 0);
     }
     return retorno;
 }
+int ingresoTeclado(char* mensaje, char* msjError, char* bufferCampo, int limiteArray, int (*validacionCampo)(char*), int reintentos)
+{
+    int retorno=-1;
+    int contadorIntentos=0;
+    int cantidadDigitos = 0;
+    char* pBufferAux = (char*)malloc(sizeof(char)*1024);
+
+
+    if(limiteArray > 0)
+    {
+        do
+        {
+            reintentos--;
+            printf("%s", mensaje);
+            contadorIntentos++;
+            myFlush();
+            if(!getString(pBufferAux,1024))
+            {
+                cantidadDigitos = strlen(pBufferAux);
+                if((*validacionCampo)(pBufferAux)) ///Valido los caracteres, si se cumple 1 y si no
+                {
+                    pBufferAux=(char*)realloc(pBufferAux,sizeof(char)*(cantidadDigitos));
+                    strcpy(bufferCampo,pBufferAux);
+                    retorno = 0;
+                    break;
+                }
+                    else
+                {
+                    printf("%s Intentos restantes %d/%d", msjError,contadorIntentos,reintentos);
+                    if(contadorIntentos==reintentos)
+                    {
+                        printf("\nSe han superado los intenos maximos permitidos");
+                        retorno = -1;
+                        break;
+                    }
+                }
+            }
+        }
+        while(contadorIntentos <= reintentos);
+    }
+
+    return retorno;
+}
+
+
+

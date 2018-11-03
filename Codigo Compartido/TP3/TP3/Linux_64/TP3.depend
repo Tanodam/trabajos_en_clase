@@ -293,8 +293,9 @@
 	"ctype.h"
 	"utn.h"
 
-1541042475 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/array.c
+1541209680 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/array.c
 	<stdio_ext.h>
+	<stdio.h>
 	<stdlib.h>
 	"string.h"
 	"ctype.h"
@@ -304,30 +305,34 @@
 
 1541029777 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/utn.h
 
-1541042439 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/array.h
+1541207697 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/array.h
 
-1541029777 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/validator.h
+1541198192 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/validator.h
 
-1541042739 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Controller.c
+1541210847 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Employee.h"
 	"parser.h"
+	"utn.h"
+	"array.h"
 
 1541029777 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/LinkedList.h
 
-1541040925 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Employee.h
+1541209227 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Employee.h
 
 1541029777 /home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/parser.h
 
-1541042978 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Employee.c
+1541209961 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/Employee.c
 	"Employee.h"
 	"LinkedList.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<ctype.h>
 	"validator.h"
+	"array.h"
 	"utn.h"
 
 1541029777 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/main.c
@@ -354,7 +359,7 @@
 	"utn.h"
 	"array.h"
 
-1541040480 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/validator.c
+1541210029 source:/home/damian/Escritorio/trabajos_en_clase/Codigo Compartido/TP3/TP3/Linux_64/validator.c
 	<stdio.h>
 	<stdlib.h>
 	"array.h"

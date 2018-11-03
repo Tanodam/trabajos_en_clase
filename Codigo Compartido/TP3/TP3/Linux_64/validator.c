@@ -145,18 +145,17 @@ int array_StringFloatEsValido (char* pArray, int limiteArray)
 *\param limiteArray tamaño del array
 *\return Exito=0 y Error=-1
 */
-int array_StringIntEsValido(char* pBuffer, int limite)
+int array_StringIntEsValido(char* array, int size)
 {
     int retorno = 0;
     int i;
-    if  ((pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0) &&
-            (pBuffer[0] == '-' || pBuffer[0] == '+' ||
-             (pBuffer[0]>='0' && pBuffer[0]<='9')))
+
+    if(array != NULL && size > 0)
     {
         retorno = 1;
-        for(i=1; i < limite && pBuffer[i] != '\0'; i++)
+        for(i=0;i < size && array[i] != '\0';i++)
         {
-            if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
+            if((array[i] < '0') && (array[i] > '9'))
             {
                 retorno = 0;
                 break;
@@ -263,6 +262,33 @@ int validacion_Letras(char* array,int size)
         for(i=0; i < digitosIngresados && array[i] != '\0'; i++)
         {
             if((tolower(array[i]) < 'a' || tolower(array[i]) > 'z') && array[i]!= ' ' && array[i]!= '-')
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+
+/**
+* \brief Evalua si se trata de un entero
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el numero maximo de cifras
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+int isValidEntero(char *array, int size)
+{
+    int retorno = 0;
+    int i;
+
+    if(array != NULL && size > 0)
+    {
+        retorno = 1;
+        for(i=0;i < size && array[i] != '\0';i++)
+        {
+            if((array[i] < '0') && (array[i] > '9'))
             {
                 retorno = 0;
                 break;
