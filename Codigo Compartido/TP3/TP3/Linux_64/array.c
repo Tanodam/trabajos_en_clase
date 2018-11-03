@@ -237,7 +237,7 @@ int array_getStringInt(char* pArray, int limiteArray, char* mensaje, char* mensa
             contadorIntentos++;
             if(!getString(buffer,limiteArray) && array_StringIntEsValido(buffer, limiteArray))
             {
-
+                strncpy(pArray,buffer,limiteArray);
                 retorno = 0;
                 break;
             }

@@ -61,7 +61,22 @@ static int isValidId(char* id)
     }
     return retorno;
 }
+
 ///-------------------------------------------------------------------------------------------------------------------------------------------
+
+int Employee_criterio(void* elementoUno, void* elementoDos)
+{
+    int retorno = 0;
+    if(elementoUno != NULL && elementoDos != NULL)
+    {
+        Employee* empleadoUno=(Employee*)elementoUno;
+        Employee* empleadoDos=(Employee*)elementoDos;
+        retorno = strcmp(empleadoUno->nombre, empleadoDos->nombre);
+    }
+
+    return retorno;
+}
+
 
 /**
 *\brief Funcion que muestra todos los campos de una estructura
@@ -114,7 +129,7 @@ Employee* Employee_getById(LinkedList* pArrayListEmployee,int idIngresado)
 
     if(pArrayListEmployee != NULL)
     {
-        for(index=0;index<ll_len(pArrayListEmployee);index++)//Recorro todo el array hasta el LEN
+        for(index=0; index<ll_len(pArrayListEmployee); index++) //Recorro todo el array hasta el LEN
         {
             auxEmployee = ll_get(pArrayListEmployee,index);//Obtengo el elemento del array en posicion index
             Employee_getId(auxEmployee,&auxID);//Obtengo el ID del elemento
@@ -152,19 +167,20 @@ int Employee_editarEmpleado(void* pArrayListEmployee)
                 utn_getEntero(&opcion,2,"\nOpcion: ","\nERROR! Ingrese un numero",1,4);
                 switch(opcion)
                 {
-                    case 1 :
-                        Employee_modificarEmpleado(this,"\nNOMBRE\n",isValidName,Employee_setNombre);
-                        break;
-                    case 2 :
-                       Employee_modificarEmpleado(this,"\nSUELDO\n",isValidSueldo,Employee_setSueldo);
-                        break;
-                    case 3 :
-                        Employee_modificarEmpleado(this,"\nHORAS TRABAJADAS\n",isValidHoras,Employee_setHorasTrabajadas);
-                        break;
-                    case 4 :
-                        break;
+                case 1 :
+                    Employee_modificarEmpleado(this,"\nNOMBRE\n",isValidName,Employee_setNombre);
+                    break;
+                case 2 :
+                    Employee_modificarEmpleado(this,"\nSUELDO\n",isValidSueldo,Employee_setSueldo);
+                    break;
+                case 3 :
+                    Employee_modificarEmpleado(this,"\nHORAS TRABAJADAS\n",isValidHoras,Employee_setHorasTrabajadas);
+                    break;
+                case 4 :
+                    break;
                 }
-            }while(opcion != 4);
+            }
+            while(opcion != 4);
         }
         else
         {
@@ -238,6 +254,42 @@ int Employee_modificarEmpleado(Employee* this, char* mensaje, int (*validacion)(
     }
     return retorno;
 }
+/**
+*\brief Funcion que elimina un empleado pero mantiene su puntero a la estructura en un array statico de "arrayElementosBaja"
+*\param void* pArrayListEmployee es la lista de elementos de la cual hay que eliminar el elemento indicado
+*\return Employee* arrayEmpleadosBaja es el array del tipo elemento donde se van a guardar los punteros eliminados
+*/
+int employee_eliminarEmpleado(void* pArrayListEmployee,void* listaEmpleadosBaja)
+{
+    Employee* this = NULL;
+    int retorno = -1;
+    char bufferId[BUFFER];
+    int idIngresado;
+    char opcion[2];
+    int indice;
+
+    if(!ingresoTeclado("\nINGRESE EL ID DEL EMPLEADO A BORRAR ","\nERROR!",bufferId,BUFFER,isValidId,2))
+    {
+        idIngresado = atoi(bufferId);
+        this = Employee_getById(pArrayListEmployee,idIngresado);
+        if(this != NULL)
+        {
+            employee_mostrar(this);
+            array_getLetras(opcion,2,"\nDesea dar de baja? S/N","\nError",2);
+            if(!strcasecmp("s",opcion))
+            {
+                indice = ll_indexOf(pArrayListEmployee,this);
+                ll_add(listaEmpleadosBaja,ll_pop(pArrayListEmployee,indice));
+            }
+        }
+        else
+        {
+            printf("\nEl ID ingresado no existe");
+        }
+    }
+    return retorno;
+}
+
 /**
  * \brief Funcion que carga un empleado desde el teclado
  * \param void* pArrayListEmployee es la lista del array donde se va a cargar

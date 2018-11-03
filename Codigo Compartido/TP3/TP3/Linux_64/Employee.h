@@ -41,4 +41,8 @@ int employee_mostrar(Employee* this);
 
 int Employee_modificarEmpleado(Employee* this, char* mensaje, int (*validacion)(char*),int (*set)(Employee*,char*));
 
+int employee_eliminarEmpleado(void* pArrayListEmployee,void* listaEmpleadosBaja);
+
+int Employee_criterio(void* elementoUno, void* elementoDos);
+
 #endif // employee_H_INCLUDED
