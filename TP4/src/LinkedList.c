@@ -447,13 +447,19 @@ int ll_contains(LinkedList* this, void* pElement)
 int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
     int returnAux = -1;
-    int i, j = 0;
-    Node* auxNode = NULL;
+    int i = 0;
+    int j = 0;
     if(this != NULL && this2 != NULL)
     {
+        returnAux = 1;
         for (i=0; i<ll_len(this); i++)
         {
-
+            if((!ll_contains(this,getNode(this2,j)->pElement)))
+            {
+                returnAux = 0;
+                break;
+            }
+            j++;
         }
     }
 
@@ -473,11 +479,21 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 LinkedList* ll_subList(LinkedList* this,int from,int to)
 {
     LinkedList* cloneArray = NULL;
+    Node* auxNode = NULL;
+    int i = 0;
 
+    if(this != NULL && from >= 0 && from < ll_len(this) && to >= 0 && to <= ll_len(this))
+    {
+        cloneArray = ll_newLinkedList();
+        for(i=from ; i<=to ; i++)
+        {
+            auxNode = ll_get(this,i);
+            ll_add(cloneArray,auxNode);
+
+        }
+    }
     return cloneArray;
 }
-
-
 
 /** \brief Crea y retorna una nueva lista con los elementos de la lista pasada como parametro
  *
@@ -488,6 +504,17 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* cloneArray = NULL;
+    Node* auxNode = NULL;
+    int i = 0;
+    if(this != NULL)
+    {
+        cloneArray = ll_newLinkedList();
+        for(i=0;i<ll_len(this);i++)
+        {
+            auxNode = ll_get(this,i);
+            ll_add(cloneArray,auxNode);
+        }
+    }
 
     return cloneArray;
 }
