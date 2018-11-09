@@ -92,53 +92,39 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
     int returnAux = -1;
-    Node* nuevoNodo = malloc(sizeof(Node));
+    Node* newNode = (Node*)malloc(sizeof(Node)*1);//variable auxiliar
+    Node* currentNode;
+    Node* previousNode;
 
-    if(this != NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this) )
+    if(this!= NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this) )
     {
-        //estoy en condiciones de agregar un nodo.
-        //para agregar un nodop tengo que preguntar en que posicion esta.
-        if(this->pFirstNode == NULL && nodeIndex == 0)//D
-        {
-            //agregar el primer nodo.
-            this->pFirstNode = nuevoNodo;
-            nuevoNodo->pElement = pElement;
-            this->size = ll_len(this) + 1;
-            returnAux = 0;
-        }
-        else if(this->pFirstNode != NULL && nodeIndex == 0)//A
-        {
-            //agrego un nodo al principio de la lista
-            Node* oldFirstNode = this->pFirstNode;
-            this->pFirstNode = nuevoNodo;
-            this->pFirstNode->pNextNode = oldFirstNode;
-            nuevoNodo->pElement = pElement;
-            this->size = ll_len(this) + 1;
-            returnAux = 0;
-        }
-        else if(this->pFirstNode != NULL && nodeIndex > 0 && nodeIndex < ll_len(this))//B
-        {
-            //agrego entre dos nodos
-            Node* oldNodeInIndex = getNode(this,nodeIndex);//traigo al ocupa de nodeIndex
-            nuevoNodo->pNextNode = oldNodeInIndex;   //el nuevo nodo tiene como siguiente al ocupa
-            Node* previousNode = getNode(this,nodeIndex - 1);  //traigo el nodo anterior a nodeIndex
-            previousNode->pNextNode = nuevoNodo;   //el nodo anterior a nodeIndex  tiene como siguiente al nuevo
-            nuevoNodo->pElement = pElement;
-            this->size = ll_len(this) + 1;
-            returnAux = 0;
-        }
-        else if(this->pFirstNode != NULL && nodeIndex == ll_len(this))//C
-        {
-            //agrego al final
-            Node* lastNode = getNode(this,nodeIndex - 1);//traigo al ultimo nodo
-            lastNode->pNextNode = nuevoNodo;   //el ultimo nodo tiene como siguiente al nuevo
+        if((this->pFirstNode == NULL || this->pFirstNode != NULL) &&
+           (nodeIndex == 0 ))//Se realiza el add en el primer lugar, estando vacio o no
+        {   //El Tempranero y El Correcto
+            previousNode = this->pFirstNode;//Se copia el primer nodo en variable auxiliar
+            this->pFirstNode = newNode;//Se enlaza NUEVO NODO al comienzo de la LinkedList
 
-            nuevoNodo->pElement = pElement;
+            newNode->pNextNode = previousNode;//Se enlaza el viejo primer nodo al next del nuevo nodo
+            newNode->pElement = pElement;
+
             this->size = ll_len(this) + 1;
+
             returnAux = 0;
         }
+        else if((this->pFirstNode != NULL || this->pFirstNode == NULL)
+                 && (nodeIndex > 0 && nodeIndex <= ll_len(this)))//Se realiza el add en el index
+        {   //El Sanguchito y El Colado
+            currentNode = getNode(this,nodeIndex);//Get del NODO a reemplazar
+            previousNode = getNode(this,nodeIndex-1);//Get del NODO anterior al que reemplazo
 
+            newNode->pNextNode = currentNode;//Muevo el NODO del INDICE al siguiente del NUEVO NODO
+            newNode->pElement = pElement;//Asigno elemento
+            previousNode->pNextNode = newNode;//Asigno al NODO ANTERIOR el NUEVO NODO como siguiente
 
+            this->size = ll_len(this) + 1;
+
+            returnAux = 0;
+        }
     }
     return returnAux;
 }
@@ -509,7 +495,7 @@ LinkedList* ll_clone(LinkedList* this)
     if(this != NULL)
     {
         cloneArray = ll_newLinkedList();
-        for(i=0;i<ll_len(this);i++)
+        for(i=0; i<ll_len(this); i++)
         {
             auxNode = ll_get(this,i);
             ll_add(cloneArray,auxNode);
@@ -519,8 +505,8 @@ LinkedList* ll_clone(LinkedList* this)
     return cloneArray;
 }
 
-
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
+ *         En base al retorno de la funcion criterio y el orden se realiza el swap
  * \param pList LinkedList* Puntero a la lista
  * \param pFunc (*pFunc) Puntero a la funcion criterio
  * \param order int  [1] Indica orden ascendente - [0] Indica orden descendente
@@ -530,8 +516,58 @@ LinkedList* ll_clone(LinkedList* this)
 int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order)
 {
     int returnAux =-1;
+    int i;
+    int size=ll_len(this);
+    int flagSwap;
+    void* thisElementoUno;
+    void* thisElementoDos;
+    int retornoCriterio;
 
+
+    if(this != NULL && size > 0 && pFunc != NULL && (order == 1 || order == 0))
+    {
+        do
+        {
+            flagSwap = 0;
+            for(i=0;i<size;i++)
+            {
+                thisElementoUno =ll_get(this,i);
+                thisElementoDos = ll_get(this,i+1);
+                if(thisElementoUno != NULL && thisElementoDos != NULL)
+                {
+                    retornoCriterio = pFunc(thisElementoUno , thisElementoDos);
+                    if((order == 0 && retornoCriterio == -1) || (retornoCriterio == 1 && order == 1))
+                    {
+                        flagSwap = 1;
+                        ll_set(this,i,thisElementoDos);
+                        ll_set(this,i+1,thisElementoUno);
+                    }
+                }
+            }
+
+
+        }while(flagSwap == 1);
+
+        returnAux = 0;
+    }
     return returnAux;
+}
 
+LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void* pElemento))
+{
+    int retorno = -1;
+
+
+    return retorno;
+}
+
+Node* ll_startIter (LinkedList* this)
+{
+    Node* returnNode = NULL;
+    if(this != NULL)
+    {
+        returnNode = this->pFirstNode;
+    }
+    return returnNode;
 }
 
