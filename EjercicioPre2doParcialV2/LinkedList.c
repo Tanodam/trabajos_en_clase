@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/LinkedList.h"
+#include "LinkedList.h"
 
 static Node* nodoGlobal;
 static Node* getNode(LinkedList* this, int nodeIndex);
@@ -619,7 +619,3 @@ int ll_map(LinkedList* this, int (*pFunc)(void*))
     return retorno;
 }
 
-void pruebaMap (LinkedList* this)
-{
-    ll_map(this,ll_add())
-}
