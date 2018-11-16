@@ -78,22 +78,22 @@ static int isValidId(char* id)
     }
     return retorno;
 }
-int employee_aumentarSueldos(void* empleado)
+int employee_filtrarEmpleadosHoras(void* pElemento)
 {
     int retorno = -1;
-    int auxSueldo;
-    char bufferSueldo[1024];
-    int porcentaje = 15;
+    int auxHoras = 0;
+    int filtro = -1;
+    //utn_getEntero(&filtro,2,"\nIngrese el numero de horas para hacer el filtro ","ERROR!",0,1000);
 
-        auxSueldo = Employee_getSueldo(empleado,&auxSueldo);
-       // utn_getEntero(&porcentaje,2,"\nIngrese el % de aumento a que hay que darle a los empleados ","\nERROR!",1,100);
-
-            auxSueldo = (auxSueldo/100)*porcentaje+100;
-            sprintf(bufferSueldo,"%d",auxSueldo);
-            Employee_setSueldo(empleado,bufferSueldo);
+    if(pElemento != NULL)
+    {
+        Employee_getHorasTrabajadas(pElemento,&auxHoras);
+        if(auxHoras >= 50)
+        {
             retorno = 0;
+        }
 
-
+    }
     return retorno;
 }
 ///--------------------------------------------------------------ORDENAR-----------------------------------------------------------------------------
@@ -299,12 +299,12 @@ int Employee_editarEmpleado(void* pArrayListEmployee)
         idIngresado = atoi(bufferID); ///Casteo el ID a int para usar la funcion getById
         limpiarPantalla();
         this = Employee_getById(pArrayListEmployee,idIngresado); ///GGuardo en this el empleado encontrado para editar
-        if(this != NULL)
+        if(this != NULL && ll_contains(pArrayListEmployee, this))
         {
+            printf("\nID ENCONTRADO\n");
             do
             {
                 limpiarPantalla();
-                printf("USUARIO ENCONTRADO\n");
                 employee_mostrar(this); ///Muestro el empleado para verificar que sea el hay que modificar
                 printf("\n\nSeleccione el campo que desea modificar\n1) Nombre\n2) Horas trabajadas\n3) Sueldo\n4) Volver");
                 utn_getEntero(&opcion,3,"\nOpcion: ","\nERROR! Ingrese un numero",1,4);
@@ -328,7 +328,7 @@ int Employee_editarEmpleado(void* pArrayListEmployee)
         }
         else
         {
-            printf("\nID no encontrado");
+            printf("\nID NO ENCONTRADO");
         }
     }
     return retorno;

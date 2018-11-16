@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Employee.h"
+#include <string.h>
+#define BUFFER 1024
 
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
  * \param FILE* pFile Puntero del tipo file al archivo que hay que parsear
@@ -10,49 +12,84 @@
  */
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
+    Employee* pEmpleado;
+    char string[2000];
+    char bufferNombre[BUFFER];
+    char bufferHoras[BUFFER];
+    char bufferId[BUFFER];
+    char bufferSueldo[BUFFER];
     int retorno = -1;
-    int flagPrimeraVuelta=1;
-    char bufferID[1024];
-    char bufferNombre[1024];
-    char bufferHorasTrabajadas[1024];
-    char bufferSueldo[1024];
 
-    Employee* pEmpleado = NULL;
 
-    if(pFile!=NULL)
+    if(pFile != NULL)
     {
+        fgets(string,sizeof(string),pFile);
         while(!feof(pFile))
         {
-            if(flagPrimeraVuelta)
+            fgets(string,sizeof(string),pFile);
+            if(strlen(string) > 5)
             {
-                flagPrimeraVuelta = 0;
-                fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",
-                       bufferID,
-                       bufferNombre,
-                       bufferHorasTrabajadas,
-                       bufferSueldo);
-            }
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",
-                   bufferID,
-                   bufferNombre,
-                   bufferHorasTrabajadas,
-                   bufferSueldo);
+                strncpy(bufferId,strtok(string, ","),BUFFER);
+                strncpy(bufferNombre,strtok(NULL,","),BUFFER);
+                strncpy(bufferHoras,strtok(NULL,","),BUFFER);
+                strncpy(bufferSueldo,strtok(NULL,"\n"),BUFFER);
+                pEmpleado = Employee_newConParametros(bufferId,bufferNombre,bufferHoras,bufferSueldo);
+                //printf("%s - %s - %s - %s\n", bufferId,bufferNombre,bufferHoras,bufferSueldo);
 
-            pEmpleado = Employee_newConParametros(bufferID,
-                                                  bufferNombre,
-                                                  bufferHorasTrabajadas,
-                                                  bufferSueldo);
-
-            if(pEmpleado != NULL)
-            {
-                retorno = 0;
-                ll_add(pArrayListEmployee,pEmpleado);
+                if(pEmpleado != NULL && !ll_add(pArrayListEmployee,pEmpleado))
+                {
+                    retorno = 1;
+                }
             }
         }
     }
-
-    return retorno;
+    fclose(pFile);
+    return retorno; // OK
 }
+
+//    int retorno = -1;
+//    int flagPrimeraVuelta=1;
+//    char bufferID[1024];
+//    char bufferNombre[1024];
+//    char bufferHorasTrabajadas[1024];
+//    char bufferSueldo[1024];
+//
+//    Employee* pEmpleado = NULL;
+//
+//    if(pFile!=NULL)
+//    {
+//        while(!feof(pFile))
+//        {
+//            if(flagPrimeraVuelta)
+//            {
+//                flagPrimeraVuelta = 0;
+//                fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",
+//                       bufferID,
+//                       bufferNombre,
+//                       bufferHorasTrabajadas,
+//                       bufferSueldo);
+//            }
+//            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",
+//                   bufferID,
+//                   bufferNombre,
+//                   bufferHorasTrabajadas,
+//                   bufferSueldo);
+//
+//            pEmpleado = Employee_newConParametros(bufferID,
+//                                                  bufferNombre,
+//                                                  bufferHorasTrabajadas,
+//                                                  bufferSueldo);
+//
+//            if(pEmpleado != NULL)
+//            {
+//                retorno = 0;
+//                ll_add(pArrayListEmployee,pEmpleado);
+//            }
+//        }
+//    }
+//
+//    return retorno;
+//}
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.dat (modo texto).
  * \param FILE* pFile Puntero del tipo file al archivo que hay que parsear
  * \param pArrayListEmployee LinkedList* lista donde se van a a guardar los empleados
