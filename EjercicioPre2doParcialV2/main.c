@@ -33,29 +33,60 @@ int main()
     // Crear lista empledos
     //...
     listaEmpleados = ll_newLinkedList();
+    //parser_parseEmpleados("data.csv",listaEmpleados);
+
     // Leer empleados de archivo data.csv
-//    if(parser_parseEmpleados("data.csv",listaEmpleados)==1)
-//    {
-//        // Calcular sueldos
-//        printf("Calculando sueldos de empleados\n");
-//        ll_map(listaEmpleados,em_calcularSueldo);
-//
-//        // Generar archivo de salida
-//        if(generarArchivoSueldos("sueldos.csv",listaEmpleados)==1)
-//        {
-//            printf("Archivo generado correctamente\n");
-//        }
-//        else
-//            printf("Error generando archivo\n");
-//    }
-//    else
-//        printf("Error leyando empleados\n");
-//
+    if(parser_parseEmpleados("data.csv",listaEmpleados)==1)
+    {
+        // Calcular sueldos
+        printf("Calculando sueldos de empleados\n");
+        ll_map(listaEmpleados,em_calcularSueldo);
+        //ll_map(listaEmpleados,empleado_mostrar);
+        printf("\n\n--CANTIDAD %d", ll_len(listaEmpleados));
+
+        // Generar archivo de salida
+        if(generarArchivoSueldos("sueldos.csv",listaEmpleados)==1)
+        {
+            printf("Archivo generado correctamente\n");
+        }
+        else
+            printf("Error generando archivo\n");
+    }
+    else
+        printf("Error leyando empleados\n");
+
 
     return 0;
 }
 
 int generarArchivoSueldos(char* fileName,LinkedList* listaEmpleados)
 {
-    return 1;
+    Empleado* this = NULL;
+    FILE* pFile;
+    pFile = fopen(fileName, "w");
+    int retorno = -1;
+    int i = 0;
+    char bufferNombre[1024];
+    int bufferId = 0;
+    int bufferHorasTrabajadas = 0;
+    int bufferSueldo = 0;
+
+    if(pFile != NULL && listaEmpleados != NULL)
+    {
+        for(i=0; i<ll_len(listaEmpleados); i++)
+        {
+            if(i==0)
+            {
+                fprintf(pFile,"id,nombre,horas,sueldo\n");///Agrega la cabecera al archivo de texto
+            }
+            this = ll_get(listaEmpleados,i);
+            empleado_getNombre(this,bufferNombre);
+            empleado_getHorasTrabajadas(this,&bufferHorasTrabajadas);
+            empleado_getSueldo(this,&bufferSueldo);
+            empleado_getId(this,&bufferId);
+            fprintf(pFile,"%d,%s,%d,%d\n",bufferId,bufferNombre,bufferHorasTrabajadas,bufferSueldo);
+            retorno = 1;
+        }
+    }
+    return retorno;
 }

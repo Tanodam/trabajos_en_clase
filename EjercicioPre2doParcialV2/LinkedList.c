@@ -607,14 +607,14 @@ int ll_map(LinkedList* this, int (*pFunc)(void*))
     if(this != NULL && pFunc != NULL)
     {
         ll_starIter(this);
-        do
+        for(int i = 0; i<ll_len(this);i++)
         {
             pElement = ll_getNext();
             if(!pFunc(pElement))
             {
                 retorno = 1;
             }
-        }while(nodoGlobal->pNextNode != NULL);
+        }
     }
     return retorno;
 }
