@@ -104,3 +104,76 @@
 	"ctype.h"
 	"utn.h"
 
+1542333337 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/array.c
+	<stdio_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1542333337 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/utn.h
+
+1542333337 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/array.h
+
+1542333337 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/validator.h
+
+1542333337 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/Empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Empleado.h"
+	<ctype.h>
+	"array.h"
+	"utn.h"
+	"LinkedList.h"
+	"validator.h"
+
+1542333337 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/Empleado.h
+
+1542333337 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/LinkedList.h
+
+1542333337 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1542333337 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Empleado.h"
+	"LinkedList.h"
+	"Parser.h"
+
+1542333337 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/Parser.h
+	"LinkedList.h"
+
+1542333337 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/Parser.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Empleado.h"
+	"LinkedList.h"
+	"Parser.h"
+
+1542333337 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1542333337 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV2/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+

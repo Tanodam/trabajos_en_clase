@@ -1,0 +1,72 @@
+# depslib dependency file v1.0
+1542587073 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Compra.c
+	"Compra.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"LinkedList.h"
+	"array.h"
+	"validator.h"
+
+1542585813 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Compra.h
+
+1542584427 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/LinkedList.h
+
+1542581085 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1542586307 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Parser.h"
+	"utn.h"
+	"Compra.h"
+
+1542584814 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Parser.h
+	"LinkedList.h"
+
+1542585628 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	<string.h>
+	"Compra.h"
+
+1542550822 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/array.c
+	<stdio_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1542474852 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/utn.h
+
+1542581231 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/array.h
+
+1541478869 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/validator.h
+
+1542475241 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1542574001 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+

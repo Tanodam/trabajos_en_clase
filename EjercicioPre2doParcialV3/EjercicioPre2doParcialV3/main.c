@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Compra.h"
 #include "LinkedList.h"
 #include "Parser.h"
+#include "utn.h"
+#include "Compra.h"
 
 /**
     Realizar un programa que lee de un archivo los datos de compras de productos realizadas por clientes.
@@ -20,6 +21,8 @@
 */
 
 int generarArchivoInforme(char* fileName,LinkedList* listaCompras);
+void* compra_filtrarPorId(void* lista);
+int compra_imprimirLista(void* lista);
 
 int main()
 {
@@ -29,25 +32,23 @@ int main()
 
     // Crear lista compras
     //...
-
+    listaCompras = ll_newLinkedList();
     // Leer compras de archivo data.csv
-    if(parser_parseCompras("data.csv",listaCompras)==1)
+    if(parser_parseCompras("data.csv",listaCompras))
     {
         // Filtrar
-        printf("Ingrese id de producto:");
-        //TODO
+        listaFiltrada=ll_filter(listaCompras,criterioId);
+        if(listaFiltrada != NULL)
 
+        compra_imprimirLista(listaFiltrada);
+        pausarPantalla();
         // Calcular montos
         printf("Calculando montos totales...\n");
+        ll_map(listaFiltrada,com_calcularMonto);
         //TODO
 
         // Generar archivo de salida
-        if(generarArchivoInforme("informe.csv",listaFiltrada)==1)
-        {
-            printf("Archivo generado correctamente\n");
-        }
-        else
-            printf("Error generando archivo\n");
+        generarArchivoInforme("informe.csv",listaFiltrada);
     }
     else
         printf("Error leyendo compras\n");
@@ -55,8 +56,53 @@ int main()
 
     return 0;
 }
-
 int generarArchivoInforme(char* fileName,LinkedList* listaCompras)
 {
-    return 1;
+    FILE* pArchivo = fopen(fileName,"w");
+    int retorno = -1;
+    if((pArchivo != NULL && !parser_SaveToText(pArchivo,listaCompras) &&
+            listaCompras != NULL && ll_len(listaCompras) > 0))
+    {
+        retorno = 1;
+        printf("ARCHIVO %s GUARDADO CON EXITO\n", fileName);
+    }
+    fclose(pArchivo);
+    return retorno;
+}
+
+void* compra_filtrarPorId(void* lista)
+{
+    LinkedList* sublistaFiltrada;
+    if(lista != NULL )
+    {
+           sublistaFiltrada = ll_filter(lista,criterioId);
+
+    }
+    return sublistaFiltrada;
+}
+int compra_imprimirLista(void* lista)
+{
+    Compra* this = NULL;
+    int retorno = -1;
+    int i = 0;
+    char bufferNombre[1024];
+    int bufferId = 0;
+    float bufferprecioUnitario = 0;
+    float bufferIva = 0;
+    int bufferUnidades = 0;
+
+         for(i=0; i<ll_len(lista); i++)
+        {
+            this = ll_get(lista,i);
+            compra_getNombreCliente(this,bufferNombre);
+            compra_getIdProducto(this,&bufferId);
+            compra_getPrecioUnitario(this,&bufferprecioUnitario);
+            compra_getIva(this,&bufferIva);
+            compra_getUnidades(this,&bufferUnidades);
+            printf("nombreCliente: %s\nidProducto: %d\nprecioUnitario: %.2f\nunidades: %d\niva: %.2f\n\n",bufferNombre,bufferId,bufferprecioUnitario,bufferUnidades,bufferIva);
+            retorno = 0;
+        }
+
+
+    return retorno;
 }
