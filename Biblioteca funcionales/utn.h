@@ -1,24 +1,10 @@
-int utn_getNumero(      int* pResultado,
-                        char mensaje[],
-                        char mensajeError[],
-                        int minimo,
-                        int maximo,
-                        int reintentos);
-int utn_getCaracter(    char* pResultado,
-                        char mensaje[],
-                        char mensajeError[],
-                        char minimo,
-                        char maximo,
-                        int reintentos);
-int utn_construirMenuNumeros(float numeroA, float numeroB);
-float suma (float numeroA, float numeroB);
-float resta (float numeroA, float numeroB);
-float cociente (float numeroA, float numeroB);
-float multiplicacion (float numeroA, float numeroB);
-long factorial(int numeroA);
-float ingresaOperando(char identificadorOperando);
-void limpiarPantalla();
-void pausarPantalla();
-void myFlush();
-int comienzaCalculadora();
-static int getInt(int* numeroIngresado);
+#ifndef UTN_H_INCLUDED
+#define UTN_H_INCLUDED
+
+int utn_getEntero(int*pEdad,int reintentos,char* msg,char*msgError,int max,int min);
+int utn_getFloat(float*pFloat,int reintentos,char* msg,char*msgError,float min,float max);
+int getStrings(char* pBuffer,int limite);
+int utn_confirmarLetras(char* mensaje, char* msjError, int reintentos);
+
+
+#endif // UTN_H_INCLUDED

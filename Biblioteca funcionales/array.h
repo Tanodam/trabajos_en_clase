@@ -1,4 +1,3 @@
-
 #ifndef ARRAY_H_INCLUDED
 #define ARRAY_H_INCLUDED
 
@@ -6,13 +5,16 @@
 #define true 1
 #define DATO_INVALIDO -1
 
-int array_mostrar(int* pArray, int limiteArray);
-int array_calcularMaximo(int* pArray, int limiteArray, int* pMaximo);
-int array_init(int* pArray, int limiteArray, int valor);
-int array_minimoDesde(int* pArray, int limiteArray, int desde, int* pMinimo);
-void array_swap(int* elementoA, int*elementoB);
-void array_ordenarArray(int* pArray, int limiteArray, int orden);
-void array_imprimirIntArray(int* pArray, int limiteArray);
-
-
+void myFlush();
+void limpiarPantalla();
+void pausarPantalla();
+char array_getNombre(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos);
+char array_getMail(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos);
+int array_getStringFloat(float* pArray, int limiteArray,int minimo, int maximo, char* mensaje, char* mensajeError, int reintentos);
+int array_getStringInt(char* pArray, int limiteArray, char* mensaje, char* mensajeError, int reintentos);
+int array_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
+                        char *mensajeError, int reintentos);
+int array_getLetras(char* pArray,int limiteArray,char* mensaje,char* msjError,int reintentos);
+int array_getStringAll(char* input,int limiteArray, char* mensaje);
+int ingresoTeclado(char* mensaje, char* msjError, char* bufferCampo, int limiteArray, int (*validacionCampo)(char*), int reintentos);
 #endif // ARRAY_H_INCLUDED

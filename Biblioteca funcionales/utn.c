@@ -1,329 +1,224 @@
+#include "utn.h"
 #include <stdio_ext.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include "utn.h"
-#include <stdio.h>
 #include <string.h>
+#include <time.h>
+#include "utn.h"
+#include "array.h"
 
+static int getFloat(float*pBuffer);
+int getString(char* bufferString,int limite);
+static int isFloat(char* pBuffer);
+static int getInt(int*pBuffer);
+static int isInt(char *pBuffer);
 
 /**
-*\brief Funcion generica para Windows/Linux para limpiar el buffer de entrada
-*/
-void myFlush()
-{
-    fflush(stdin);//Para Windows
-    __fpurge(stdin);//Para Linux
-}
-/**
-*\brief Funcion generica para solicitar un numero al usuario
-*/
-static int getInt(int* numeroIngresado)
-{
-    char buffer[400];
-    int aux;
-
-    scanf("%s",buffer);
-    *numeroIngresado=atoi(buffer);
-    return aux;
-}
-/**
-*\brief Funcion que limpia la pantalla de la consola.
-*/
-void limpiarPantalla()
-{
-    //system("cls");
-    system("clear");
-}
-/**
-*\brief Funcion que pausa la consola para que el usuario pueda leer.
-*/
-void pausarPantalla()
-{
-    //system("pause"); //Para Windows
-    printf("Presione ENTER para continuar");
-    myFlush();
-    getchar();
-
-}
-/**
-*\brief Solicita un número al usuario, lo valida y devuelve el resultado
-*\param pResultado Puntero a la variable resultado
-*\param mensaje[] es el mensaje que se le va a mostrar al usuario
-*\param mensajeError[] es el mensaje que se le va a mostrar al usuario si hay un error en la carga de datos
+*\brief Solicita un int al usuario y lo devuelve validado mediante la funcion IsInt.
+*\param pArray pFloat a la direccion de memoria donde se va almacenar el float validado
+*\param msg[] es el mensaje que se le va a mostrar al usuario
+*\param msgError[] es el mensaje que se le va a mostrar al usuario si hay un error en la carga de datos
 *\param minimo es el numero minimo aceptado
-*\param maximo es el numero maximo aceptado
-*\param reintentos es el numero maximo de reintentos aceptados
+*\param maximoes el numero maximo aceptado
 *\return Exito=0 y Error=1
 *
 */
-int utn_getNumero(  int* pResultado,
-                    char mensaje[],
-                    char mensajeError[],
-                    int minimo,
-                    int maximo,
-                    int reintentos)
+int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,int max)
 {
-    int numero;
-    int i;
+    int retorno = -1;
+    int buffer;
 
-    for(i=0;i<reintentos;i++)
+    if(pEntero!=NULL&& msg !=NULL && msgError!=NULL && min<= max && reintentos>=0)
     {
-        printf("%s", mensaje);
-        myFlush();
-        while(getInt(&numero)!=1)
+        do
         {
-
-            break;
+            reintentos--;
+            printf("%s",msg);
+            if(getInt(&buffer) == 0 && buffer >= min && buffer<=max)
+            {
+                *pEntero= buffer;
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("%s",msgError);
+            }
         }
-
-        if(numero>=minimo && numero<=maximo)
-        {
-            *pResultado=numero;
-            return 0;
-        }
-        else
-        {
-            printf("%s", mensajeError);
-
-        }
+        while(reintentos >= 0);
     }
-    printf("Usted ha superado la cantidad de reintentos permitidos");
-    return -1;
+    return retorno;
 }
 /**
-*\brief Construye el menu principal de la Calculadora y valida la opcion seleccionada
-*\param Valor de la variable asignada a numeroA para mostrarla en pantalla.
-*\param Valor de la variable asignada a numeroB para mostrarla en pantalla.
-*\return Exito=0 Devuelve la opcion ingresada y validada Error=5 Devuelve 5 porque es el case de Salida del programa.
+*\brief Solicita un floar al usuario y lo devuelve validado mediante la funcion IsFloat.
+*\param pArray pFloat a la direccion de memoria donde se va almacenar el float validado
+*\param msg[] es el mensaje que se le va a mostrar al usuario
+*\param msgError[] es el mensaje que se le va a mostrar al usuario si hay un error en la carga de datos
+*\param minimo es el numero minimo aceptado
+*\param maximoes el numero maximo aceptado
+*\return Exito=0 y Error=1
 *
 */
-int utn_construirMenuNumeros(float numeroA, float numeroB)
+int utn_getFloat(float*pFloat,int reintentos,char* msg,char*msgError,float min,float max)
 {
-        int respuesta;
-        printf("1. Ingresar primer operando (A=%.2f) \n", numeroA);
-        printf("2. Ingresar segundo operando (B=%.2f) \n", numeroB);
-        printf("3. Calcular todas las operaciones \n");
-        printf("4. Informar resultados \n");
-        printf("5. Salir\n");
-        myFlush();
-        if(utn_getNumero(&respuesta,"Ingrese la opcion deseada (1-5):","\nERROR, intente nuevamente\n",1,5,3)!=0)
-        {
-            return 5;
-        }
+    int retorno = -1;
+    float buffer;
 
-        return respuesta;
-}
-/**
-*\brief Realiza la suma de los numeros A y B.
-*\param Recibe el valor de la variable A
-*\param Recibe el valor de la variable B
-*\return Retorna el valor de la suma entre A y B
-*/
-float suma (float numeroA, float numeroB)
-{
-
-    float resultado;
-
-    resultado=numeroA+numeroB;
-    return resultado;
-}
-/**
-*\brief Realiza la resta de los numeros A y B.
-*\param Recibe el valor de la variable A
-*\param Recibe el valor de la variable B
-*\return Retorna el valor de la resta entre A y B
-*/
-float resta (float numeroA, float numeroB)
-{
-    float resultado;
-
-    resultado=numeroA-numeroB;
-    return resultado;
-}
-/**
-*\brief Realiza el cociente de los numeros A y B.
-*\param Recibe el valor de la variable A
-*\param Recibe el valor de la variable B
-*\return Retorna el cociente entre A y B
-*/
-float cociente (float numeroA, float numeroB)
-{
-    float resultado;
-
-    resultado=numeroA/numeroB;
-    return resultado;
-
-}
-/**
-*\brief Realiza la multiplicacion de los numeros A y B.
-*\param Recibe el valor de la variable A
-*\param Recibe el valor de la variable B
-*\return Retorna el producto entre A y B
-*/
-float multiplicacion (float numeroA, float numeroB)
-{
-    float resultado;
-
-    resultado=numeroA*numeroB;
-    return resultado;
-}
-/**
-*\brief Realiza el factorial de un numero
-*\param Recibe el valor de la variable a la cual se debe calcular su factorial
-*\return Retorna el factorial.
-*/
-long factorial(int numero)
-{
-   long resultado;
-   int i;
-   long factorial=1;
-   if(numero==1 || numero==0)
+    if(pFloat!=NULL&& msg !=NULL && msgError!=NULL && min<= max && reintentos>=0)
     {
-        return 1;
-    }
-   else
-   {
-        for(i=1;i<=numero;i++)
+        do
         {
-            factorial=factorial*i;
-            resultado=factorial;
+            reintentos--;
+            printf("%s: ",msg);
+            if(getFloat(&buffer) == 0 && buffer >= min && buffer<=max)
+            {
+                *pFloat= buffer;
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("%s",msgError);
+            }
         }
-   }
-   return resultado;
-}
-/**
-*\brief Le solicita un numero al usuario y valida que sea un numero
-*\param Rebibe el identificador del Operando para mostrarlo en pantalla durante la carga.
-*\return Retorna el numero ingresado
-*/
-float ingresaOperando(char identificadorOperando)
-{
-    float operando=0.0;
-    printf("\nIngrese el operando %c: ", identificadorOperando);
-    myFlush();
-    while(scanf("%f", &operando)!=1 )
-    {
-        printf("\nError el dato ingresado no es un numero\n");
-        pausarPantalla();
-        limpiarPantalla();
-        break;
+        while(reintentos >= 0);
     }
-    return operando;
+    return retorno;
 }
-
 /**
-*\brief Ejecuta la aplicacion Calculadora
-*\param numeroA= Es la variable donde se va a guardar el numero A ingresado por el usuario. Se inicializa en 0.
-*\param numeroB= Es la variable donde se va a guardar el numero B ingresado por el usuario. Se inicializa en 0.
-*\param resultadoSuma= Es la variable donde se va a guardar el resultado de la funcion "suma"
-*\param resultadoResta= Es la variable donde se va a guardar el resultado de la funcion "resta"
-*\param resultadoMultiplicacion= Es la variable donde se va a guardar el resultado de la funcion "multiplicacion"
-*\param resultadoCociente= Es la variable donde se va a guardar el resultado de la funcion "cociente"
-*\param resultadoFactorialA= Es la variable donde se va a guardar el resultado de la funcion "factorial"
-correspondiente al numero A
-*\param resultadoFactorialB= Es la variable donde se va a guardar el resultado de la funcion "factorial"
-corespondiente al numero B.
-*\param respuestaNumerica= Es la variable donde se va a guardar la opcion numerica ingresada por el usuario
-*\param flagNumeroA_Ingresado= Es la variable donde se va a guardar el flag que corrobora que el
-usuario haya ingresado el primer numero.
-*\return 0= Cuando se completo el programa
-*
+*\brief Funcion estatica que se encarga de tomar datos por consola
+*\param pArray Puntero a la direccion de memoria donde se va almacenar el string que se tomo por consola
+*\return Exito=0 y Error=-1
 */
-int comienzaCalculadora()
+static int getInt(int* pBuffer)
 {
-    float numeroA=0;
-    float numeroB=0;
-    float resultadoSuma;
-    float resultadoResta;
-    float resultadoMultiplicacion;
-    float resultadoCociente;
-    long resultadoFactorialA;
-    long resultadoFactorialB;
-    int respuestaNumerica;
-    int flagNumeroA_Ingresado=0;
-
-    printf("Bienvenido a Calculadora\nTP LABORATORIO 1\nAlumno: Damian Desario\t Legajo:104327\nCurso: 1°H\n");
-    pausarPantalla();
+    char bufferString[200];
+    int retorno =-1;
+    if(getStrings(bufferString,200)==0 && isInt(bufferString)==0)
+    {
+        *pBuffer=atoi(bufferString);
+        retorno=0;
+    }
+    return retorno;
+}
+/**
+*\brief [Funcion interna de GetInt] Valida que el usuario solo haya ingresado caracteres del 0 al 9
+*\param pBuffer Puntero a la direccion de memoria donde esta almacenada el string a validar
+*\param limiteArray tamaño del array
+*\return Exito=0 y Error=-1
+*/
+static int isInt(char *pBuffer)
+{
+    int retorno=-1;
+    int i=0;
     do
     {
-        limpiarPantalla();
-        respuestaNumerica=utn_construirMenuNumeros(numeroA, numeroB);// Construye el menu e indica en pantalla los numeros ingresados
-        switch(respuestaNumerica)
+        if(*(pBuffer+i)<48||*(pBuffer+i)>57)
         {
-            case 1:
-                numeroA=ingresaOperando('A');//Solicita el numeroA al usuario
-                flagNumeroA_Ingresado = 1; //Valida que el usuario ingreso el primer numero y permite usar el CASE 3
-                system("clear");
-                break;
-
-            case 2:// Solicita el numeroB al usuario
-                numeroB=ingresaOperando('B');
-                limpiarPantalla();
-                break;
-
-            case 3: //Calcula todas las variables
-                myFlush();
-                if(flagNumeroA_Ingresado!=1) //Valida que el usuario haya ingresado aunque sea el numeroA
-                {
-                    printf("No puede iniciar el programa sin indicar un numero\n");
-                    pausarPantalla();
-                    limpiarPantalla();
-                    break;
-                }
-                printf("\nCALCULANDO..\n");
-                resultadoSuma=suma(numeroA, numeroB);
-
-                resultadoResta=resta(numeroA, numeroB);
-                //printf("b) El resultado de la resta A-B es: %.2f \n", resultado);
-
-                if(numeroB!=0)//Valida que el numberoB sea distinto de CERO para realizar la division
-                    {
-                        resultadoCociente=cociente(numeroA, numeroB);
-
-                    }
-                else //Informa que el divisor es CERO
-                    {
-                        printf("\nc)NO SE PUDO CALCULAR EL COCIENTE PORQUE EL DIVISOR ES 0.\n");
-                    }
-
-
-                resultadoMultiplicacion=multiplicacion(numeroA, numeroB);
-                resultadoFactorialA=factorial(numeroA);
-                resultadoFactorialB=factorial(numeroB);
-                pausarPantalla();
-                limpiarPantalla();
-                break;
-
-            case 4: //Informa todos los resultados
-                myFlush();
-                if(flagNumeroA_Ingresado!=1) //Valida que el usuario haya ingresado aunque sea el numeroA
-                {
-                    printf("No puede iniciar el programa sin indicar un numero\n");
-                    pausarPantalla();
-                    limpiarPantalla();
-                    break;
-                }
-                printf("\nA) El resultado de la suma A+B es: %.2f \n", resultadoSuma);
-                printf("b) El resultado de la resta A-B es: %.2f \n", resultadoResta);
-
-                if(numeroB!=0)//Valida que el divisor sea distinto de CERO apra mostrar el resultado
-                    {
-                        printf("c) El resultado del cociente A/B es: %.2f \n", resultadoCociente);
-                    }
-
-                printf("d) El resultado del producto A*B es: %.2f \n", resultadoMultiplicacion);
-                printf("e) El resultado del factorial de A y B es: A!=%ld y B!=%ld\n", resultadoFactorialA, resultadoFactorialB);
-                numeroA=0;
-                numeroB=0;
-                flagNumeroA_Ingresado=0;
-                pausarPantalla();
-                limpiarPantalla();
-                break;
-
-            case 5:
-                break;
-
+            break;
         }
-        }while(respuestaNumerica!=5);
-    return 0;
+        i++;
+    }
+    while (i<strlen(pBuffer));
+    if(i==strlen(pBuffer))
+    {
+        retorno=0;
+    }
+    return retorno;
+}
+/**
+*\brief [Funcion interna de GetFloat] Valida que el usuario solo haya ingresado caracteres del 0 al 9
+*\param pBuffer Puntero a la direccion de memoria donde esta almacenada el string a validar
+*\param limiteArray tamaño del array
+*\return Exito=0 y Error=-1
+*/
+static int isFloat(char* pBuffer)
+{
+    int retorno=-1;
+    int i=0;
+    int contadorDePuntos=0;
+    do
+    {
+        if(*(pBuffer+i)==','||*(pBuffer+i)=='.')
+        {
+            *(pBuffer+i)='.';
+            contadorDePuntos++;
+            if(contadorDePuntos==2)
+            {
+                break;
+            }
+        }
+        else if(*(pBuffer+i)<48||*(pBuffer+i)>57)
+        {
+            break;
+        }
+        i++;
+    }
+    while (i<strlen(pBuffer));
+    if(i==strlen(pBuffer))
+    {
+        retorno=0;
+    }
+    return retorno;
+}
+/**
+*\brief Funcion  que se encarga de tomar datos por consola y valida que la cantidad de caracteres sea -1
+        que el limite del array y que el ultimo caracter sea el \n
+*\param pArray Puntero a la direccion de memoria donde se va almacenar el string que se tomo por consola
+*\param limiteArray es el tamaño del array de caracteres donde se va a almacenar el string
+*\return Exito=0 y Error=-1
+*/
+int getStrings(char* pBuffer,int limite)
+{
+    char bufferString[4096];
+    int retorno =-1;
+    if (pBuffer != NULL && limite >0)
+    {
+        myFlush();
+        fgets(bufferString,sizeof(bufferString),stdin);
+        if (bufferString[strlen(bufferString)-1]=='\n')
+        {
+            bufferString[strlen(bufferString)-1]='\0';
+        }
+        if(strlen(bufferString)<= limite)
+        {
+            strncpy(pBuffer,bufferString,limite);
+            retorno=0;
+        }
+    }
+    return retorno;
+}
+/**
+*\brief Funcion estatica que se encarga de tomar datos por consola
+*\param pArray Puntero a la direccion de memoria donde se va almacenar el string que se tomo por consola
+*\return Exito=0 y Error=-1
+*/
+static int getFloat(float*pBuffer)
+{
+    char bufferString[200];
+    int retorno =-1;
+    if(getStrings(bufferString,200)==0 && isFloat(bufferString)==0)
+    {
+        *pBuffer=atof(bufferString);
+        retorno=0;
+    }
+    return retorno;
+}
+/**
+*\brief Funcion  que se encarga de pedirle al usuario que confirme una accion
+*\param char* mensaje a mostrarle al usuario
+*\param char* msjError a mostrarle al usuario si hay un error
+*\param int reintentos cantidad de reintentos
+*\return Exito=0 y Error=-1
+*/
+int utn_confirmarLetras(char* mensaje, char* msjError, int reintentos)
+{
+    int retorno = -1;
+    char opcion[2];
+
+    array_getLetras(opcion,2,mensaje,msjError,reintentos);
+    if(!strcasecmp(opcion,"s"))
+    {
+        retorno = 0;
+    }
+    return retorno;
 }
