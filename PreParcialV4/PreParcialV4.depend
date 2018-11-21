@@ -1,0 +1,147 @@
+# depslib dependency file v1.0
+1542552337 source:/home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/array.c
+	<stdio_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1542552337 /home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/utn.h
+
+1542552337 /home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/array.h
+
+1542674993 /home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/validator.h
+
+1542762405 source:/home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1542753180 /home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/LinkedList.h
+
+1542762425 source:/home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/main.c
+	<stdlib.h>
+	<string.h>
+	<stdio_ext.h>
+	"LinkedList.h"
+	"parser.h"
+	"people.h"
+	"utn.h"
+	"validator.h"
+
+1542552337 /home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/parser.h
+
+1542761419 /home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/people.h
+
+1542762020 source:/home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"people.h"
+	<string.h>
+
+1542761785 source:/home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/people.c
+	"people.h"
+	"array.h"
+	"LinkedList.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validator.h"
+	"utn.h"
+
+1542760749 source:/home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1542755725 source:/home/alumno/Descargas/trabajos_en_clase-master/PreParcialV4/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+
+1542552336 source:/home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/array.c
+	<stdio_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1542552336 /home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/utn.h
+
+1542552336 /home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/array.h
+
+1542674992 /home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/validator.h
+
+1542762404 source:/home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1542753180 /home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/LinkedList.h
+
+1542766748 source:/home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/main.c
+	<stdlib.h>
+	<string.h>
+	<stdio_ext.h>
+	"LinkedList.h"
+	"parser.h"
+	"people.h"
+	"utn.h"
+	"validator.h"
+
+1542552336 /home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/parser.h
+
+1542761418 /home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/people.h
+
+1542762020 source:/home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"people.h"
+	<string.h>
+
+1542766527 source:/home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/people.c
+	"people.h"
+	"array.h"
+	"LinkedList.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validator.h"
+	"utn.h"
+
+1542760748 source:/home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1542755724 source:/home/damian/Escritorio/tp_laboratorio_1/trabajos_en_clase/PreParcialV4/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+

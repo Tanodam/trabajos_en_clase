@@ -40,6 +40,7 @@ int parser_parseCompras(char* fileName, LinkedList* lista)
             }
         }
     }
+    printf("SE CARGO EL ARCHIVO %s CON EXITO\nCANTIDAD CLIENTES: %d\n\n", fileName, ll_len(lista));
     return 1; // OK
 }
 int parser_SaveToText(FILE* pFile, LinkedList* pArrayListEmployee)

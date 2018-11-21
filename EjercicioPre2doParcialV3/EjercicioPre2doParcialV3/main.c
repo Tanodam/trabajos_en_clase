@@ -38,12 +38,8 @@ int main()
     {
         // Filtrar
         listaFiltrada=ll_filter(listaCompras,criterioId);
-        if(listaFiltrada != NULL)
-
         compra_imprimirLista(listaFiltrada);
-        pausarPantalla();
         // Calcular montos
-        printf("Calculando montos totales...\n");
         ll_map(listaFiltrada,com_calcularMonto);
         //TODO
 
@@ -99,7 +95,7 @@ int compra_imprimirLista(void* lista)
             compra_getPrecioUnitario(this,&bufferprecioUnitario);
             compra_getIva(this,&bufferIva);
             compra_getUnidades(this,&bufferUnidades);
-            printf("nombreCliente: %s\nidProducto: %d\nprecioUnitario: %.2f\nunidades: %d\niva: %.2f\n\n",bufferNombre,bufferId,bufferprecioUnitario,bufferUnidades,bufferIva);
+            printf("Cliente: %s\nidProducto: %d\nprecioUnitario: %.2f\nunidades: %d\niva: %.2f\n\n",bufferNombre,bufferId,bufferprecioUnitario,bufferUnidades,bufferIva);
             retorno = 0;
         }
 

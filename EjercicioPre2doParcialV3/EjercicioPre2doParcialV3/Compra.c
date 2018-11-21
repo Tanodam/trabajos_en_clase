@@ -332,8 +332,6 @@ int criterioId(void* this)
     int elementId;
     static int flag = 0;
 
-
-
     if(this != NULL)
     {
         if(flag == 0)
@@ -341,17 +339,10 @@ int criterioId(void* this)
             ingresoTeclado("Ingrese el el ID que esta buscando ","ERROR",paramId,1024,isValidId,2);
             flag = 1;
         }
-        compra_getIdProducto(this,&elementId);
-        if(elementId == atoi(paramId))
+        if(!compra_getIdProducto(this,&elementId) && elementId == atoi(paramId))
         {
             retorno = 0;
         }
     }
-    else
-    {
-        printf("\nID NO ENCONTRADO\n");
-        flag = 0;//RESET
-    }
-
     return retorno;
 }

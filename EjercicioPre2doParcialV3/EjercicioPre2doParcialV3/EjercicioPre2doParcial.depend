@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1542587073 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Compra.c
+1542677502 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Compra.c
 	"Compra.h"
 	<stdio.h>
 	<stdlib.h>
@@ -19,7 +19,7 @@
 	<string.h>
 	"LinkedList.h"
 
-1542586307 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/main.c
+1542677610 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -30,7 +30,7 @@
 1542584814 /home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Parser.h
 	"LinkedList.h"
 
-1542585628 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Parser.c
+1542675769 source:/home/damian/Escritorio/trabajos_en_clase/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
