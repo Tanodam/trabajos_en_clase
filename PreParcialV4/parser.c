@@ -93,34 +93,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 //
 //    return retorno;
 //}
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.dat (modo texto).
- * \param FILE* pFile Puntero del tipo file al archivo que hay que parsear
- * \param pArrayListEmployee LinkedList* lista donde se van a a guardar los empleados
- * \return Exito=1 y Error=-0
- */
-int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
-{
-    int retorno = -1;
-    int cantidadLeida;
-    Employee* pEmployee;
-    Employee* aux = employee_new();
 
-    if(pFile != NULL)
-    {
-        while(!feof(pFile))
-        {
-            pEmployee = employee_new();
-            cantidadLeida = fread(pEmployee,sizeof(Employee),1,pFile);
-            if(pEmployee != NULL && cantidadLeida == 1)
-            {
-                employee_setId(aux,"0");
-                ll_add(pArrayListEmployee,pEmployee);
-                retorno = 0;
-            }
-        }
-    }
-    return retorno;
-}
 /** \brief Parsea los datos los datos de los empleados al archivo data.csv (modo texto).
  * \param FILE* pFile Puntero del tipo file al archivo que hay que parsear
  * \param pArrayListEmployee LinkedList* lista desde donde se van a a guardar los empleados
@@ -162,24 +135,3 @@ int parser_SaveToText(FILE* pFile, LinkedList* pArrayListEmployee)
  * \param pArrayListEmployee LinkedList* lista desde donde se van a a guardar los empleados
  * \return Exito=1 y Error=-0
  */
-int parser_SaveToBinary(FILE* pFile, LinkedList* pArrayListEmployee)
-{
-    Employee* auxiliarEmpleado = NULL;
-    int retorno = -1;
-    int i = 0;
-
-    if(pFile != NULL && pArrayListEmployee != NULL)
-    {
-        while(i != ll_len(pArrayListEmployee))
-        {
-            auxiliarEmpleado = ll_get(pArrayListEmployee,i);
-            if(auxiliarEmpleado != NULL)
-            {
-                fwrite(auxiliarEmpleado,sizeof(Employee),1,pFile);
-            }
-            retorno = 0;
-            i++;
-        }
-    }
-    return retorno;
-}

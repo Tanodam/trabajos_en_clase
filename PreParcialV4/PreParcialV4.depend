@@ -145,3 +145,76 @@
 	"utn.h"
 	"array.h"
 
+1542769011 source:/home/damian/Escritorio/trabajos_en_clase/PreParcialV4/array.c
+	<stdio_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1542769011 /home/damian/Escritorio/trabajos_en_clase/PreParcialV4/utn.h
+
+1542769011 /home/damian/Escritorio/trabajos_en_clase/PreParcialV4/array.h
+
+1542769011 /home/damian/Escritorio/trabajos_en_clase/PreParcialV4/validator.h
+
+1542804344 source:/home/damian/Escritorio/trabajos_en_clase/PreParcialV4/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1542769011 /home/damian/Escritorio/trabajos_en_clase/PreParcialV4/LinkedList.h
+
+1542918125 source:/home/damian/Escritorio/trabajos_en_clase/PreParcialV4/main.c
+	<stdlib.h>
+	<string.h>
+	<stdio_ext.h>
+	"LinkedList.h"
+	"parser.h"
+	"people.h"
+	"utn.h"
+	"validator.h"
+
+1542769011 /home/damian/Escritorio/trabajos_en_clase/PreParcialV4/parser.h
+
+1542769011 /home/damian/Escritorio/trabajos_en_clase/PreParcialV4/people.h
+
+1542917867 source:/home/damian/Escritorio/trabajos_en_clase/PreParcialV4/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"people.h"
+	<string.h>
+
+1542769011 source:/home/damian/Escritorio/trabajos_en_clase/PreParcialV4/people.c
+	"people.h"
+	"array.h"
+	"LinkedList.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validator.h"
+	"utn.h"
+
+1542769011 source:/home/damian/Escritorio/trabajos_en_clase/PreParcialV4/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1542769011 source:/home/damian/Escritorio/trabajos_en_clase/PreParcialV4/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+

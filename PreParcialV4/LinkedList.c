@@ -489,19 +489,20 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* cloneArray = NULL;
-    Node* auxNode = NULL;
-    int i = 0;
+
     if(this != NULL)
     {
-        cloneArray = ll_newLinkedList();
-        for(i=0; i<ll_len(this); i++)
-        {
-            auxNode = ll_get(this,i);
-            ll_add(cloneArray,auxNode);
-        }
+
+        return ll_subList(this,0,ll_len(this));
+
+//        cloneArray = ll_newLinkedList();
+//        for(i=0; i<ll_len(this); i++)
+//        {
+//            auxNode = ll_get(this,i);
+//            ll_add(cloneArray,auxNode);
+//        }
     }
 
-    return cloneArray;
 }
 
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
@@ -564,6 +565,7 @@ int resetIterator(LinkedList* this)
     if(this != NULL)
     {
         this->nodoGlobal = NULL;
+
         retorno = 0;
     }
     return retorno;
@@ -655,7 +657,9 @@ int ll_map(LinkedList* this, int (*pFunc)(void*))
                 }
             }
         }
-        resetIterator(this);
+
+    resetIterator(this);
+
     }
     return retorno;
 }
