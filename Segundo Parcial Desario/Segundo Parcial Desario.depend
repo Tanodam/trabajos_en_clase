@@ -1,0 +1,91 @@
+# depslib dependency file v1.0
+1542919985 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/array.c
+	<stdio_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"ctype.h"
+	"utn.h"
+	"array.h"
+	"validator.h"
+
+1542919985 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/utn.h
+
+1542919985 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/array.h
+
+1542919985 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/validator.h
+
+1542930762 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"utn.h"
+
+1542928628 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/LinkedList.h
+
+1542931701 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"venta.h"
+	<string.h>
+	"Controller.h"
+	"parser.h"
+	"utn.h"
+	"informes.h"
+
+1542929480 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"venta.h"
+	<string.h>
+
+1542931721 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/venta.h
+
+1542919985 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/utn.c
+	"utn.h"
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"array.h"
+
+1542931041 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/validator.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+	"string.h"
+	"ctype.h"
+	"utn.h"
+
+1542929512 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"parser.h"
+	"venta.h"
+	<string.h>
+
+1542923485 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/parser.h
+
+1542931557 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/venta.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"venta.h"
+	<string.h>
+	"validator.h"
+
+1542919985 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/Controller.h
+
+1542931701 source:/home/alumno/Escritorio/Damian/Segundo Parcial Desario/informes.c
+	"informes.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1542931617 /home/alumno/Escritorio/Damian/Segundo Parcial Desario/informes.h
+
